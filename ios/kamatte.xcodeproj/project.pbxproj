@@ -161,7 +161,6 @@
 				332A6FF84CB179F0B04DEFA9 /* Pods-kamatteTests.debug.xcconfig */,
 				0F306D4C33BE8EAB2357E5E4 /* Pods-kamatteTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +307,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -635,7 +635,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hot-motto-chili-pappers.kamatte";
 				PRODUCT_NAME = kamatte;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +654,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hot-motto-chili-pappers.kamatte";
 				PRODUCT_NAME = kamatte;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
