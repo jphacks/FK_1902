@@ -61,3 +61,4 @@ buck-out/
 # firebase
 GoogleService-Info.plist
 google-services.json
+project.pbxproj
