@@ -36,6 +36,7 @@ target 'kamatte' do
 
   pod 'Firebase'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   target 'kamatteTests' do
     inherit! :search_paths
