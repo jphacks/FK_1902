@@ -5,6 +5,11 @@
 
 # 初期設定
 
+1. リポジトリをクローン
+2. `npm i`
+3. `cd ios && pod install`
+4. firebaseの設定ファイルを設置
+
 ## firebase
 
 下記リンクから設定ファイルをダウンロード
