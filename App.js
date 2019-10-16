@@ -24,7 +24,7 @@ import {
   ReloadInstructions
 } from "react-native/Libraries/NewAppScreen";
 
-import firebase from "@/src/utils/firebase";
+import firebase from "app/src/utils/firebase";
 
 const App: () => React$Node = () => {
   firebase();
