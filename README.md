@@ -6,10 +6,10 @@
 # 初期設定
 
 1. リポジトリをクローン
-2. `npm i`
+2. `yarn`
 3. `cd ios && pod install`
 4. firebaseの設定ファイルを設置
-5. `npm run ios`で確認
+5. `yarn ios`で確認
 
 ## firebase
 
