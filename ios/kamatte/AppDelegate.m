@@ -18,6 +18,7 @@
 {
   [FIRApp configure];
   FIRStorage *storage = [FIRStorage storage];
+  FIRFirestore *defaultFirestore = [FIRFirestore firestore];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"kamatte"
