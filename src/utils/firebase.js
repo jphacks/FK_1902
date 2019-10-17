@@ -13,3 +13,5 @@ export const test = () => {
       console.log("ok");
     });
 };
+
+export const storage = firebase.storage();
