@@ -13,10 +13,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1B5457E899E450C5D744D4B5 /* libPods-kamatteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D39A71BD0CC0BFE5D4808B /* libPods-kamatteTests.a */; };
-		2A19F3D32356214800E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D22356214800E9811E /* GoogleService-Info.plist */; };
-		2A19F3D42356214800E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D22356214800E9811E /* GoogleService-Info.plist */; };
-		2A19F3D52356214800E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D22356214800E9811E /* GoogleService-Info.plist */; };
-		2A19F3D62356214800E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D22356214800E9811E /* GoogleService-Info.plist */; };
 		2A19F3D8235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
 		2A19F3D9235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
 		2A19F3DA235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
@@ -62,7 +58,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kamatte/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = kamatte/main.m; sourceTree = "<group>"; };
 		1D0D4DD952221BE2CA9A2D1B /* Pods-kamatte-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatte-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-kamatte-tvOSTests/Pods-kamatte-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		2A19F3D22356214800E9811E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "kamatte/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kamatte-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kamatte-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kamatte-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kamatte-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +130,6 @@
 		13B07FAE1A68108700A75B9A /* kamatte */ = {
 			isa = PBXGroup;
 			children = (
-				2A19F3D22356214800E9811E /* GoogleService-Info.plist */,
 				2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -341,7 +335,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A19F3D42356214800E9811E /* GoogleService-Info.plist in Resources */,
 				2A19F3D9235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +346,6 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2A19F3D8235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				2A19F3D32356214800E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +354,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-				2A19F3D52356214800E9811E /* GoogleService-Info.plist in Resources */,
 				2A19F3DA235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +362,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A19F3D62356214800E9811E /* GoogleService-Info.plist in Resources */,
 				2A19F3DB235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
