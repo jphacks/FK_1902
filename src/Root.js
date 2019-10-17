@@ -8,8 +8,8 @@ const Root = () => {
   return (
     <Router>
       <Stack key="root">
-        <Scene key="sample" component={sample} title="sample" />
         <Scene key="chatSample" component={chatSample} title="chatroom" />
+        <Scene key="sample" component={sample} title="sample" />
       </Stack>
     </Router>
   );
