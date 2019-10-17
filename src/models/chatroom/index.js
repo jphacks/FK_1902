@@ -15,25 +15,18 @@ class Chatroom {
     };
   }
 
-  ref = db.collection("chatroom");
+  ref = db.collection("chatrooms");
 
   getAll = async () => {
     const snapShot = await this.ref.get().catch(e => console.error(e.message));
     return snapShotToArray(snapShot);
   };
 
-  getByDocId = async docId => {
-    const document = await this.ref
-      .doc(docId)
-      .get()
-      .catch(e => console.error(e.message));
-    const chatroom = documentToObject(document);
-    chatroom.messages = chatroom.messages.map(message => {
-      message.createdAt = message.createdAt.toDate();
-      return message;
+  subscribe = (chatroomId, setChatroom) => {
+    this.ref.doc(chatroomId).onSnapshot(document => {
+      const chatroom = documentToObject(document);
+      setChatroom(chatroom);
     });
-
-    return chatroom;
   };
 
   createMessage(message) {

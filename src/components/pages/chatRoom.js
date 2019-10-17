@@ -17,25 +17,23 @@ export default class extends React.Component {
   };
 
   componentDidMount = async () => {
-    await this.fetchChatroom();
+    // stateで受け取る
+    const chatroomId = "OsLsIsIz5OUocDbptjNn";
 
-    const chatroomId = this.state.chatroom.docId;
+    this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom =>
+      this.setState({ chatroom })
+    );
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
+
+    this.isHost = Math.round(Math.random()) ? true : false;
   };
 
   componentWillUnMount() {
+    this.unsubscribeChatroom();
     this.unsubscribeMessage();
   }
-
-  fetchChatroom = async () => {
-    // stateで渡す
-    const chatroom = await this.chatroom
-      .getByDocId("OsLsIsIz5OUocDbptjNn")
-      .catch(e => console.error(e.message));
-    this.setState({ chatroom });
-  };
 
   onSend(messages = []) {
     const chatroomId = this.state.chatroom.docId;
@@ -44,16 +42,21 @@ export default class extends React.Component {
 
   render() {
     const { chatroom, messages } = this.state;
+    // stateで受け取る
+    const isHost = this.isHost;
 
     return (
       <GiftedChat
         messages={messages}
         onSend={messages => this.onSend(messages)}
-        // userId ルーム作成時にisHost渡す
-        // あればhostのidをなければguestのidを
         user={{
-          _id: chatroom.host
+          _id: isHost ? chatroom.host.id : chatroom.guest.id,
+          name: isHost ? chatroom.host.name : chatroom.guest.name,
+          avater: isHost ? chatroom.host.avater : chatroom.guest.avater
         }}
+        placeholder=""
+        alwaysShowSend
+        showAvatarForEveryMessage
       />
     );
   }
