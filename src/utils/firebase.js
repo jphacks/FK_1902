@@ -1,12 +1,15 @@
-import firebase from 'react-native-firebase';
+import firebase from "react-native-firebase";
 
-export default () => {
-  console.log('call');
+export default firebase;
+
+export const db = firebase.firestore();
+
+export const test = () => {
   firebase
     .auth()
     .signInAnonymously()
     .then(user => {
       console.log(user.isAnonymous);
-      console.log('ok');
+      console.log("ok");
     });
 };
