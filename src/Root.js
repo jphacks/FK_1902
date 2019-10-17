@@ -1,8 +1,8 @@
 import React from "react";
 import { Router, Stack, Scene } from "react-native-router-flux";
 
-import sample from "app/src/components/pages/sample";
-import sample2 from "app/src/components/pages/sample2";
+import sample from "app/src/components/lv5/sample";
+import sample2 from "app/src/components/lv5/sample2";
 
 const Root = () => {
   return (
