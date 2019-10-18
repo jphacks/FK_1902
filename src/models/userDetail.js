@@ -1,4 +1,5 @@
 import { db, storage } from "app/src/utils/firebase";
+import uuid from "uuid/v1";
 import { snapShotToArray, documentToObject } from "app/src/models/utils/format";
 
 class UserDetail {
@@ -16,7 +17,8 @@ class UserDetail {
   }
 
   dbRef = db.collection("userDetails");
-  avatarStorageRef = storage.ref().child("avatar");
+  avatarStorageRef = (userId, filename) =>
+    storage.ref(`avatar/${userId}/${filename}`);
 
   getByUserId = async userId => {
     const document = await this.dbRef
@@ -33,10 +35,11 @@ class UserDetail {
     return req;
   };
 
-  createAvatar = async file => {
-    const req = await this.avatarStorageRef
-      .put(file)
-      .catch(e => console.error(e.message));
+  createAvatar = async (userId, file) => {
+    const ext = file.split(".").pop();
+    const filename = `${uuid()}.${ext}`;
+
+    const req = await this.avatarStorageRef(userId, filename).putFile(file);
     return req;
   };
 }

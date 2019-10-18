@@ -16,7 +16,7 @@ export default class extends React.Component {
   state = {
     userId: "",
     profile: { ...UserDetail.properties },
-    newAvatar: { source: "", fileName: "" }
+    avatarSource: ""
   };
 
   componentDidMount = async () => {
@@ -70,21 +70,26 @@ export default class extends React.Component {
         console.log("ImagePicker Error: ", res.error);
       } else {
         const source = res.uri;
-        const data = "data:image/jpeg;base64," + res.data;
-        const { fileName } = res;
-        this.setState({ newAvatar: { source, data, fileName } });
+        this.setState({ avatarSource: source });
       }
     });
   };
 
-  // データをアップロードできてない
   imageUpload = async () => {
-    const { newAvatar } = this.state;
-    const data = await this.userDetail.createAvatar(newAvatar.uri);
+    const { userId, profile, avatarSource } = this.state;
+    await this.userDetail
+      .createAvatar(userId, avatarSource)
+      .then(snapShot => {
+        this.setState({
+          profile: { ...profile, avatar: snapShot.downloadURL }
+        });
+        this.onUpdate();
+      })
+      .catch(e => console.error);
   };
 
   render() {
-    const { userId, profile, newAvatar } = this.state;
+    const { userId, profile, avatarSource } = this.state;
     const { name, age, gender, avatar } = profile;
 
     return (
@@ -109,9 +114,21 @@ export default class extends React.Component {
               value={gender}
               onChangeText={text => this.onChangeProfileText("gender", text)}
             />
-            <Image source={newAvatar.source} />
-            <Button title="image選択" onPress={this.selectAvatar} />
-            <Button title="画像投稿" onPress={this.imageUpload} />
+            <Text>現在のプロフィール写真</Text>
+            <Image
+              source={{ uri: profile.avatar }}
+              style={{ height: 200, minWidth: 200 }}
+            />
+            <Button
+              title="新しいプロフィール画像選択"
+              onPress={this.selectAvatar}
+            />
+            <Text>新しいプロフィール写真</Text>
+            <Image
+              source={{ uri: avatarSource }}
+              style={{ height: 200, minWidth: 200 }}
+            />
+            <Button title="プロフィール画像更新" onPress={this.imageUpload} />
             <Button title="プロフィール更新" onPress={this.onUpdate} />
             <Button title="ログアウト" onPress={this.onSignOut} />
           </>
