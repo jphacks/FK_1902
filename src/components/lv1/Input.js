@@ -6,7 +6,8 @@ export default ({
   value,
   maxLength,
   keyboardType,
-  onChangeText
+  onChangeText,
+  ...props
 }) => {
   return (
     <TextInput
@@ -15,6 +16,7 @@ export default ({
       maxLength={maxLength}
       keyboardType={keyboardType}
       onChangeText={onChangeText}
+      {...props}
     />
   );
 };
