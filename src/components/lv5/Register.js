@@ -21,21 +21,25 @@ export default class extends React.Component {
     this.setState({ [target]: text });
   };
 
-  onSend = async () => {
+  onSend = () => {
     const { phoneNumber, countryISO2 } = this.state;
     const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
     const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
-    // send
-    const confirmationResult = await auth.phoneNumber(phoneNumberWithDialCode);
 
-    this.setState({ confirmationResult });
+    auth
+      .phoneNumber(phoneNumberWithDialCode)
+      .then(confirmationResult => {
+        console.log("SMSを送信しました");
+        this.setState({ confirmationResult });
+      })
+      .catch(e => console.error(e.message));
   };
 
   onConfirm = () => {
     const { confirmationResult, confirmCode } = this.state;
     confirmationResult
       .confirm(confirmCode)
-      .then(res => console.log("singined: ", res.uid))
+      .then(res => console.log("userID: ", res.uid))
       .catch(e => console.log(e.message));
   };
 

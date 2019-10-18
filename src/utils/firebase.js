@@ -10,8 +10,19 @@ export const auth = {
       .auth()
       .signInWithPhoneNumber(phoneNumber)
       .catch(e => console.error(e.message));
-    console.log("ok");
     return confirmationResult;
+  },
+  signOut: async () => {
+    const req = await firebase.auth().signOut();
+    return req;
+  },
+  currentUserId: () => {
+    const currentUser = firebase.auth().currentUser;
+    return currentUser ? currentUser.uid : "";
+  },
+  isSignedIn: () => {
+    const currentUser = firebase.auth().currentUser;
+    return !!currentUser;
   }
 };
 
