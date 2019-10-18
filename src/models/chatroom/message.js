@@ -9,7 +9,7 @@ class Message {
       user: {
         _id: "",
         name: "",
-        avater: ""
+        avatar: ""
       },
       createdAt: ""
     };
