@@ -53,11 +53,6 @@ export default class extends React.Component {
       .catch(e => console.error(e.message));
   };
 
-  imageUpload = async () => {
-    const { newAvatar } = this.state;
-    const data = await this.userDetail.createAvatar(newAvatar.uri);
-  };
-
   selectAvatar = () => {
     const { profile } = this.state;
     const options = {
@@ -80,6 +75,12 @@ export default class extends React.Component {
         this.setState({ newAvatar: { data, fileName } });
       }
     });
+  };
+
+  // データをアップロードできてない
+  imageUpload = async () => {
+    const { newAvatar } = this.state;
+    const data = await this.userDetail.createAvatar(newAvatar.uri);
   };
 
   render() {
