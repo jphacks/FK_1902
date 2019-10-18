@@ -16,7 +16,7 @@ export default class extends React.Component {
   state = {
     userId: "",
     profile: { ...UserDetail.properties },
-    newAvatar: { data: "", fileName: "" }
+    newAvatar: { source: "", fileName: "" }
   };
 
   componentDidMount = async () => {
@@ -69,10 +69,10 @@ export default class extends React.Component {
       } else if (res.error) {
         console.log("ImagePicker Error: ", res.error);
       } else {
-        console.log(res);
+        const source = res.uri;
         const data = "data:image/jpeg;base64," + res.data;
         const { fileName } = res;
-        this.setState({ newAvatar: { data, fileName } });
+        this.setState({ newAvatar: { source, data, fileName } });
       }
     });
   };
@@ -109,7 +109,7 @@ export default class extends React.Component {
               value={gender}
               onChangeText={text => this.onChangeProfileText("gender", text)}
             />
-            <Image source={newAvatar.data} />
+            <Image source={newAvatar.source} />
             <Button title="image選択" onPress={this.selectAvatar} />
             <Button title="画像投稿" onPress={this.imageUpload} />
             <Button title="プロフィール更新" onPress={this.onUpdate} />
