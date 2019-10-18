@@ -4,10 +4,10 @@ import Input from "app/src/components/lv1/Input";
 import Icon from "app/src/components/lv1/Icon";
 
 export default props => {
-  const { style, ...props } = props;
+  const { iconName, iconSize, iconColor, ...props } = props;
   return (
-    <View style={style}>
-      <Icon {...props} />
+    <View>
+      <Icon name={iconName} size={iconSize} color={iconColor} />
       <Input {...props} />
     </View>
   );
