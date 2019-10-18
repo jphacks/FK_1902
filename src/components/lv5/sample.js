@@ -6,12 +6,7 @@ export default class extends React.Component {
   render() {
     return (
       <View>
-        <Text>sample text</Text>
-        <Text>sample text</Text>
-        <Text>sample text</Text>
-        <Text>sample text</Text>
-        <Text>sample text</Text>
-        <Text onPress={() => Actions.sample2()}>sample2へ</Text>
+        <Text onPress={() => Actions.chatSample()}>chatroomへ</Text>
       </View>
     );
   }
