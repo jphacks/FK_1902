@@ -1,8 +1,8 @@
 import React from "react";
 import { Router, Stack, Scene } from "react-native-router-flux";
 
-import sample from "app/src/components/pages/sample";
-import chatRoom from "app/src/components/pages/chatRoom";
+import sample from "app/src/components/lv5/sample";
+import chatRoom from "app/src/components/lv5/chatRoom";
 
 const Root = () => {
   return (
