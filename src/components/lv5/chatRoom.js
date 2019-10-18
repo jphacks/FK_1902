@@ -26,8 +26,6 @@ export default class extends React.Component {
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
-
-    this.isHost = Math.round(Math.random()) ? true : false;
   };
 
   componentWillUnMount() {
@@ -43,7 +41,7 @@ export default class extends React.Component {
   render() {
     const { chatroom, messages } = this.state;
     // stateで受け取る
-    const isHost = this.isHost;
+    const isHost = false;
 
     return (
       <GiftedChat
@@ -52,7 +50,7 @@ export default class extends React.Component {
         user={{
           _id: isHost ? chatroom.host.id : chatroom.guest.id,
           name: isHost ? chatroom.host.name : chatroom.guest.name,
-          avater: isHost ? chatroom.host.avater : chatroom.guest.avater
+          avatar: isHost ? chatroom.host.avatar : chatroom.guest.avatar
         }}
         placeholder=""
         alwaysShowSend

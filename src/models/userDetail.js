@@ -7,7 +7,7 @@ class UserDetail {
       name: "",
       age: "0",
       gender: "0",
-      avater: "",
+      avatar: "",
       currency: {
         shinsatsuken: 0,
         shohosen: 0
@@ -16,14 +16,15 @@ class UserDetail {
   }
 
   dbRef = db.collection("userDetails");
-  avaterStorageRef = storage.ref().child("avater");
+  avatarStorageRef = storage.ref().child("avatar");
 
   getByUserId = async userId => {
     const document = await this.dbRef
       .doc(userId)
       .get()
+      .then(res => documentToObject(res))
       .catch(e => console.error(e.message));
-    return documentToObject(document);
+    return document;
   };
 
   set = async (userId, profile) => {
@@ -32,10 +33,10 @@ class UserDetail {
     return req;
   };
 
-  createAvater = async file => {
-    const req = await avaterStorageRef.put(file).then(snapShot => {
-      console.log(snapShot);
-    });
+  createAvatar = async file => {
+    const req = await this.avatarStorageRef
+      .put(file)
+      .catch(e => console.error(e.message));
     return req;
   };
 }
