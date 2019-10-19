@@ -59,6 +59,7 @@ export default class extends React.Component {
 
     return (
       <View>
+        <Button title="新規登録" onPress={() => Actions.register()} />
         {loading ? (
           <Text>loading</Text>
         ) : (
