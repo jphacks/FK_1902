@@ -15,23 +15,27 @@ class Chatroom {
     };
   }
 
-  ref = db.collection("chatrooms");
+  dbRef = db.collection("chatrooms");
 
   getAll = async () => {
-    const snapShot = await this.ref.get().catch(e => console.error(e.message));
+    const snapShot = await this.dbRef
+      .get()
+      .catch(e => console.error(e.message));
     return snapShotToArray(snapShot);
   };
 
   subscribe = (chatroomId, setChatroom) => {
-    this.ref.doc(chatroomId).onSnapshot(document => {
+    this.dbRef.doc(chatroomId).onSnapshot(document => {
       const chatroom = documentToObject(document);
       setChatroom(chatroom);
     });
   };
 
-  createMessage(message) {
-    this.ref.add({ message });
-  }
+  create = async chatroom => {
+    chatroom.createdAt = new Date();
+    const chatroomRef = await this.dbRef.add({ ...chatroom });
+    return chatroomRef.id;
+  };
 }
 
 export default Chatroom;

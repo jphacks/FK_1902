@@ -17,8 +17,7 @@ export default class extends React.Component {
   };
 
   componentDidMount = async () => {
-    // stateで受け取る
-    const chatroomId = "OsLsIsIz5OUocDbptjNn";
+    const { chatroomId } = this.props;
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom =>
       this.setState({ chatroom })
@@ -40,8 +39,7 @@ export default class extends React.Component {
 
   render() {
     const { chatroom, messages } = this.state;
-    // stateで受け取る
-    const isHost = false;
+    const { isHost } = this.props;
 
     return (
       <GiftedChat
