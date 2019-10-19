@@ -25,7 +25,6 @@ const tabComponents = [
 
 const noTabComponents = [
   { key: "register", component: Register },
-  { key: "chatroom", component: Chatroom },
   { key: "settingProfile", component: SettingProfile }
 ];
 
@@ -41,8 +40,7 @@ export default class extends React.Component {
     if (userId) {
       this.fetchUser(userId);
     } else {
-      // login実装後コメント外す
-      // Actions.register();
+      Actions.register();
     }
   };
 
@@ -67,11 +65,11 @@ export default class extends React.Component {
             {tabComponents.map(item => (
               <Scene
                 key={item.key}
-                component={() => {
+                component={props => {
                   const Component = item.component;
                   return (
                     <Container bgColor={COLOR.main}>
-                      <Component user={user} />
+                      <Component {...props} user={user} />
                     </Container>
                   );
                 }}
@@ -84,16 +82,21 @@ export default class extends React.Component {
             <Scene
               hideNavBar
               key={item.key}
-              component={() => {
+              component={props => {
                 const Component = item.component;
                 return (
                   <Container bgColor={COLOR.whiteMain}>
-                    <Component user={user} />
+                    <Component {...props} user={user} />
                   </Container>
                 );
               }}
             />
           ))}
+          <Scene
+            hideNavBar
+            key="chatroom"
+            component={props => <Chatroom {...props} user={user} />}
+          />
         </Scene>
       </Router>
     );

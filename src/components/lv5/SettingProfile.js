@@ -41,6 +41,7 @@ export default class extends React.Component {
 
   onUpdate = () => {
     const { userId, profile } = this.state;
+    delete profile.docId;
     this.userDetail
       .set(userId, profile)
       .then(() => console.log("update ok"))

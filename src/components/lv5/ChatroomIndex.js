@@ -29,11 +29,10 @@ export default class extends React.Component {
       .then(chatrooms => this.setState({ chatrooms, loading: false }));
   }
 
-  onEnterChatroom = async chatroomId => {
+  onEnterChatroom = chatroomId => {
     const { user } = this.state;
-    await this.chatroom
-      .updateGuest(chatroomId, user)
-      .then(() => Actions.chatroom({ chatroomId, isHost: false }));
+    this.chatroom.updateGuest(chatroomId, user);
+    Actions.chatroom({ chatroomId, isHost: false });
   };
 
   render() {
@@ -45,8 +44,9 @@ export default class extends React.Component {
         {loading ? (
           <Text>loading</Text>
         ) : (
-          chatrooms.map(chatroom => (
+          chatrooms.map((chatroom, index) => (
             <Button
+              key={index}
               title={chatroom.detail.title}
               onPress={() => this.onEnterChatroom(chatroom.docId)}
             />

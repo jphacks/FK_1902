@@ -10,7 +10,6 @@ export default class extends React.Component {
   chatroom = new Chatroom();
 
   state = {
-    userId: "",
     user: { id: "", name: "", avatar: "" },
     chatroom: { ...Chatroom.properties }
   };

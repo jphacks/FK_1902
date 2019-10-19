@@ -12,44 +12,38 @@ export default class extends React.Component {
   message = new Message();
 
   state = {
-    chatroom: { ...Chatroom.properties },
     messages: [{ ...Message.properties }]
   };
 
-  componentDidMount = async () => {
-    const { chatroomId } = this.props;
+  componentDidMount() {
+    const { user, chatroomId } = this.props;
 
-    this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom =>
-      this.setState({ chatroom })
-    );
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
-  };
-
-  componentWillUnMount() {
-    // アンマウント時に確認->チャットルーム破棄
-    this.unsubscribeChatroom();
-    this.unsubscribeMessage();
   }
 
+  componentWillUnMount = async () => {
+    this.unsubscribeMessage();
+  };
+
   onSend(messages = []) {
-    const chatroomId = this.state.chatroom.docId;
+    const { chatroomId } = this.props;
     messages.forEach(message => this.message.create(chatroomId, message));
   }
 
   render() {
-    const { chatroom, messages } = this.state;
-    const { isHost } = this.props;
+    const { messages } = this.state;
+    const { user } = this.props;
 
     return (
       <GiftedChat
         messages={messages}
         onSend={messages => this.onSend(messages)}
         user={{
-          _id: isHost ? chatroom.host.id : chatroom.guest.id,
-          name: isHost ? chatroom.host.name : chatroom.guest.name,
-          avatar: isHost ? chatroom.host.avatar : chatroom.guest.avatar
+          _id: user.docId,
+          name: user.name,
+          avatar: user.avatar
         }}
         placeholder=""
         alwaysShowSend
