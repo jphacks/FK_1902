@@ -11,7 +11,7 @@ export const snapShotToArray = snapShot => {
 
 export const documentToObject = doc => {
   const docData = doc.data();
-  if (docData.createdAt) {
+  if (docData && docData.createdAt) {
     docData.createdAt = docData.createdAt.toDate();
   }
   const obj = {
