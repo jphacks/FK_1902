@@ -3,7 +3,7 @@ import { View } from "react-native";
 import Button from "app/src/components/lv1/Button";
 import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 
-export default ({ buttonTitle, buttonColor, ...props }) => {
+export default props => {
   return (
     <View>
       <InputWithIcon
