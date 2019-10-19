@@ -11,8 +11,9 @@ export default props => {
         keyboardType="number-pad"
         maxLength={20}
         iconName="phone"
-        iconSize={50}
+        iconSize={20}
         iconColor="#000"
+        {...props}
       />
       <Button title="認証コードを送信" color="#000" {...props} />
     </View>
