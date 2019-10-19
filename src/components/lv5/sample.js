@@ -10,15 +10,18 @@ export default class extends React.Component {
 
   state = {
     // この情報をchatroomのhost or guestに入れると同時にチャットルームに繊維
+    userId: "",
     user: { id: "", name: "", avatar: "" }
   };
 
-  componentDidMount() {
-    this.fetchUser();
-  }
+  componentDidMount = async () => {
+    const userId = auth.currentUserId();
+    await this.setState({});
+    userId && this.fetchUser();
+  };
 
   fetchUser() {
-    const userId = auth.currentUserId();
+    const { userId } = this.state;
     this.userDetail
       .getByUserId(userId)
       .then(profile =>
