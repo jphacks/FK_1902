@@ -20,37 +20,39 @@ export default () => {
   const chatroomNewColor = active === "chatroomNew" ? COLOR.main : COLOR.gray;
 
   return (
-    <View style={styles.tabBarBg}>
-      <TouchableOpacity
-        style={styles.tabWrapper}
-        onPress={() => {
-          setActive("chatroomIndex");
-          Actions.chatroomIndex();
-        }}>
-        <Icon
-          name="headphones"
-          size={height * 0.05}
-          color={chatroomIndexColor}
-        />
-        <Text style={{ color: chatroomIndexColor, ...styles.label }}>
-          聞いてあげる
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tabWrapper}
-        onPress={() => {
-          setActive("chatroomNew");
-          Actions.chatroomNew();
-        }}>
-        <Icon
-          name="heart-pulse"
-          size={height * 0.05}
-          color={chatroomNewColor}
-        />
-        <Text style={{ color: chatroomNewColor, ...styles.label }}>
-          かまってもらう
-        </Text>
-      </TouchableOpacity>
+    <View style={{ backgroundColor: COLOR.whiteMain }}>
+      <View style={styles.tabBarBg}>
+        <TouchableOpacity
+          style={styles.tabWrapper}
+          onPress={() => {
+            setActive("chatroomIndex");
+            Actions.chatroomIndex();
+          }}>
+          <Icon
+            name="headphones"
+            size={height * 0.05}
+            color={chatroomIndexColor}
+          />
+          <Text style={{ color: chatroomIndexColor, ...styles.label }}>
+            聞いてあげる
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tabWrapper}
+          onPress={() => {
+            setActive("chatroomNew");
+            Actions.chatroomNew();
+          }}>
+          <Icon
+            name="heart-pulse"
+            size={height * 0.05}
+            color={chatroomNewColor}
+          />
+          <Text style={{ color: chatroomNewColor, ...styles.label }}>
+            かまってもらう
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

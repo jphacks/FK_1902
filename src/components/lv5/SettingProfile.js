@@ -23,7 +23,8 @@ export default class extends React.Component {
 
   componentDidMount() {
     const { user } = this.props;
-    this.setState({ profile: user });
+    const { profile } = this.state;
+    this.setState({ userId: user.id, profile: { ...profile, ...user } });
   }
 
   onChangeProfileText = (target, text) => {

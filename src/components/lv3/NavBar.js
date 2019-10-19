@@ -12,15 +12,15 @@ import COLOR from "app/src/config/color.json";
 
 import Icon from "app/src/components/lv1/Icon";
 
-// TODO: user情報を受け取ってavatarとcurrency表示
+export default props => {
+  const { user } = props;
 
-export default () => {
   return (
     <View style={styles.navBar}>
       <TouchableOpacity
         style={styles.avatarBg}
         onPress={() => Actions.settingProfile()}>
-        <Image style={styles.avatar} />
+        <Image style={styles.avatar} source={{ uri: user.avatar }} />
       </TouchableOpacity>
       <View style={styles.propertiesWrapper}>
         <View style={styles.iconWrapper}>
@@ -33,7 +33,7 @@ export default () => {
           <Text style={{ color: COLOR.white, marginLeft: width * 0.01 }}>
             ×
           </Text>
-          <Text style={styles.iconLabel}>5</Text>
+          <Text style={styles.iconLabel}>{user.silver}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <Icon
@@ -43,7 +43,7 @@ export default () => {
             color={COLOR.white}
           />
           <Text style={{ color: COLOR.white }}>×</Text>
-          <Text style={styles.iconLabel}>1000</Text>
+          <Text style={styles.iconLabel}>{user.gold}</Text>
         </View>
       </View>
     </View>

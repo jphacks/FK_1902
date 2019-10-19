@@ -9,10 +9,8 @@ class UserDetail {
       age: "0",
       gender: "0",
       avatar: "",
-      currency: {
-        shinsatsuken: 0,
-        shohosen: 0
-      }
+      silver: 0,
+      gold: 0
     };
   }
 

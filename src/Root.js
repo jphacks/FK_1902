@@ -37,27 +37,21 @@ export default class extends React.Component {
   };
 
   componentDidMount = async () => {
-    const userId = auth.currentUserId();
-    await this.setState({ userId });
+    const userId = await auth.currentUserId();
     if (userId) {
-      this.fetchUser();
+      this.fetchUser(userId);
     } else {
       // login実装後コメント外す
       // Actions.register();
     }
   };
 
-  fetchUser = async () => {
-    const { userId } = this.state;
+  fetchUser = async userId => {
     await this.userDetail
       .getByUserId(userId)
       .then(profile =>
         this.setState({
-          user: {
-            id: profile.docId,
-            name: profile.name,
-            avatar: profile.avatar
-          }
+          user: { ...profile }
         })
       )
       .catch(e => console.log(e));
@@ -81,7 +75,7 @@ export default class extends React.Component {
                     </Container>
                   );
                 }}
-                navBar={NavBar}
+                navBar={() => <NavBar user={user} />}
               />
             ))}
           </Tabs>
