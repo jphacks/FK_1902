@@ -49,6 +49,10 @@ export default class extends React.Component {
     console.log("pressed");
   };
 
+  onChangeText = () => {
+    console.log("onChangeText");
+  };
+
   render() {
     return (
       <View>
@@ -67,9 +71,10 @@ export default class extends React.Component {
         />
         <Button title="確認コード送信" onPress={this.onConfirm} />
         <AuthenticationTemplate
-          onChangeText={text => this.setState({ confirmCode: text })}
+          onChangeText={this.onChangeText}
           onPress={this.onPress}
           disabled={false}
+          inputValue="hoge"
         />
         {/* <Logo /> */}
       </View>

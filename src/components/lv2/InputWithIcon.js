@@ -1,13 +1,13 @@
 import React from "react";
 import { View } from "react-native";
 import Input from "app/src/components/lv1/Input";
-import IconFont from "app/src/components/lv1/Icon";
+import Icon from "app/src/components/lv1/Icon";
 
-export default ({ iconName, iconSize, iconColor, ...props }) => {
+export default ({ iconName, iconSize, iconColor, inputValue, ...props }) => {
   return (
     <View>
-      <IconFont name={iconName} size={iconSize} color={iconColor} />
-      <Input {...props} />
+      <Icon name={iconName} size={iconSize} color={iconColor} />
+      <Input value={inputValue} {...props} />
     </View>
   );
 };
