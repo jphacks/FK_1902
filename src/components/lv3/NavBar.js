@@ -1,5 +1,13 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions, Image } from "react-native";
+import { Actions } from "react-native-router-flux";
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Image
+} from "react-native";
 import COLOR from "app/src/config/color.json";
 
 import Icon from "app/src/components/lv1/Icon";
@@ -9,9 +17,11 @@ import Icon from "app/src/components/lv1/Icon";
 export default () => {
   return (
     <View style={styles.navBar}>
-      <View style={styles.avatarBg}>
+      <TouchableOpacity
+        style={styles.avatarBg}
+        onPress={() => Actions.settingProfile()}>
         <Image style={styles.avatar} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.propertiesWrapper}>
         <View style={styles.iconWrapper}>
           <Icon
