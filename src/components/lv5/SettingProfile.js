@@ -22,7 +22,7 @@ export default class extends React.Component {
   componentDidMount = async () => {
     const userId = auth.currentUserId();
     await this.setState({ userId });
-    this.fetchUserProfile();
+    userId && this.fetchUserProfile();
   };
 
   fetchUserProfile() {
