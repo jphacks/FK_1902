@@ -30,7 +30,9 @@ class UserDetail {
   };
 
   set = async (userId, profile) => {
-    delete profile.docId;
+    if (profile.docId) {
+      delete profile.docId;
+    }
     const req = await this.dbRef.doc(userId).set({ ...profile });
     return req;
   };
