@@ -6,6 +6,8 @@ import { auth } from "app/src/utils/firebase";
 
 import PhoneInput from "react-native-phone-input";
 import Input from "app/src/components/lv1/Input";
+import AuthenticationTemplate from "app/src/components/lv4/AuthenticationTemplate";
+import Logo from "app/src/components/lv1/Logo";
 
 import COUNTRY from "app/src/config/countries.json";
 
@@ -43,6 +45,10 @@ export default class extends React.Component {
       .catch(e => console.log(e.message));
   };
 
+  onPress = () => {
+    console.log("pressed");
+  };
+
   render() {
     return (
       <View>
@@ -60,6 +66,12 @@ export default class extends React.Component {
           value={this.state.confirmCode}
         />
         <Button title="確認コード送信" onPress={this.onConfirm} />
+        <AuthenticationTemplate
+          onChangeText={text => this.setState({ confirmCode: text })}
+          onPress={this.onPress}
+          disabled={false}
+        />
+        {/* <Logo /> */}
       </View>
     );
   }
