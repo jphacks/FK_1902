@@ -1,8 +1,9 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, Button } from "react-native";
 
 import Chatroom from "app/src/models/chatroom";
+
+import ChatroomIndex from "app/src/components/lv4/ChatroomIndex";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
@@ -29,23 +30,12 @@ export default class extends React.Component {
   };
 
   render() {
-    const { chatrooms, loading } = this.state;
-
     return (
-      <View>
-        <Button title="新規登録" onPress={() => Actions.register()} />
-        {loading ? (
-          <Text>loading</Text>
-        ) : (
-          chatrooms.map((chatroom, index) => (
-            <Button
-              key={index}
-              title={chatroom.detail.title}
-              onPress={() => this.onEnterChatroom(chatroom.docId)}
-            />
-          ))
-        )}
-      </View>
+      <ChatroomIndex
+        {...this.state}
+        toRegister={() => Actions.register()}
+        onEnterChatroom={this.onEnterChatroom}
+      />
     );
   }
 }
