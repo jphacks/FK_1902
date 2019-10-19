@@ -4,9 +4,11 @@ import ImagePicker from "react-native-image-picker";
 import { View, Text, Button, Image } from "react-native";
 
 import { auth } from "app/src/utils/firebase";
+import constantsToPickerOptions from "app/src/utils/constantsToPickerOptions";
 import UserDetail from "app/src/models/userDetail";
 
 import Input from "app/src/components/lv1/Input";
+import Picker from "app/src/components/lv1/Picker";
 
 import USER from "app/src/config/user.json";
 
@@ -96,37 +98,36 @@ export default class extends React.Component {
       <View>
         {auth.isSignedIn() ? (
           <>
-            <Text>id: {userId}</Text>
-            <Text>name: {name}</Text>
             <Input
               value={name}
               onChangeText={text => this.onChangeProfileText("name", text)}
             />
-            {/* セレクトボックス */}
-            <Text>age: {USER.age[age]}</Text>
-            <Input
+            <Picker
               value={age}
-              onChangeText={text => this.onChangeProfileText("age", text)}
+              options={constantsToPickerOptions(USER.age)}
+              onValueChange={value =>
+                this.setState({
+                  profile: { ...this.state.profile, age: value }
+                })
+              }
             />
-            {/* セレクトボックス */}
-            <Text>gender: {USER.gender[gender]}</Text>
-            <Input
+            <Picker
               value={gender}
-              onChangeText={text => this.onChangeProfileText("gender", text)}
+              options={constantsToPickerOptions(USER.gender)}
+              onValueChange={value =>
+                this.setState({
+                  profile: { ...this.state.profile, gender: value }
+                })
+              }
             />
             <Text>現在のプロフィール写真</Text>
             <Image
               source={{ uri: profile.avatar }}
-              style={{ height: 200, minWidth: 200 }}
+              style={{ height: 100, minWidth: 100 }}
             />
             <Button
               title="新しいプロフィール画像選択"
               onPress={this.selectAvatar}
-            />
-            <Text>新しいプロフィール写真</Text>
-            <Image
-              source={{ uri: avatarSource }}
-              style={{ height: 200, minWidth: 200 }}
             />
             <Button title="プロフィール画像更新" onPress={this.imageUpload} />
             <Button title="プロフィール更新" onPress={this.onUpdate} />
