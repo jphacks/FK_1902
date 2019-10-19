@@ -1,7 +1,17 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
-export default props => {
-  const { style, source } = props;
-  return <Image style={style} source={source} />;
+export default () => {
+  return (
+    <Image
+      // style={styles.logo}
+      source={require("app/src/images/kamatte-logo.png")}
+    />
+  );
 };
+
+// const styles = StyleSheet.create({
+//   logo: {
+//     width: 0.8
+//   }
+// });

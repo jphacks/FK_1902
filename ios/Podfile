@@ -47,13 +47,3 @@ target 'kamatte' do
 
   use_native_modules!
 end
-
-target 'kamatte-tvOS' do
-  # Pods for kamatte-tvOS
-
-  target 'kamatte-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
