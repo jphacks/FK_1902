@@ -4,8 +4,6 @@ import COLOR from "app/src/config/color.json";
 
 import Icon from "app/src/components/lv1/Icon";
 
-const { width, height } = Dimensions.get("window");
-
 // TODO: user情報を受け取ってavatarとcurrency表示
 
 export default () => {
@@ -42,6 +40,7 @@ export default () => {
   );
 };
 
+const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   navBar: {
     height: height * 0.13,

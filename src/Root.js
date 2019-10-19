@@ -1,21 +1,21 @@
 import React from "react";
 import { Router, Tabs, Scene } from "react-native-router-flux";
 
+import NavBar from "app/src/components/lv3/NavBar";
+import TabBar from "app/src/components/lv3/TabBar";
+import Container from "app/src/components/lv3/Container";
 import Chatroom from "app/src/components/lv5/Chatroom";
 import ChatroomIndex from "app/src/components/lv5/ChatroomIndex";
 import ChatroomNew from "app/src/components/lv5/ChatroomNew";
 import Register from "app/src/components/lv5/Register";
 import SettingProfile from "app/src/components/lv5/SettingProfile";
 
-import NavBar from "app/src/components/lv2/NavBar";
-import Container from "app/src/components/lv3/Container";
-
-const Root = () => {
+export default () => {
   return (
     <Router>
       <Container>
         <Scene hideNavBar kye="root">
-          <Tabs key="tabs">
+          <Tabs key="tabs" tabBarComponent={TabBar}>
             <Scene
               key="chatroomIndex"
               component={ChatroomIndex}
@@ -35,5 +35,3 @@ const Root = () => {
     </Router>
   );
 };
-
-export default Root;
