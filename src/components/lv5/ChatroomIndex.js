@@ -10,7 +10,8 @@ export default class extends React.Component {
 
   state = {
     chatrooms: [{ ...Chatroom.properties }],
-    loading: true
+    loading: true,
+    refreshing: false
   };
 
   componentDidMount() {
@@ -23,6 +24,12 @@ export default class extends React.Component {
       .then(chatrooms => this.setState({ chatrooms, loading: false }));
   }
 
+  onRefresh = async () => {
+    this.setState({ refreshing: true });
+    await this.fetchChatrooms();
+    this.setState({ refreshing: false });
+  };
+
   onEnterChatroom = chatroomId => {
     const { user } = this.props;
     this.chatroom.updateGuest(chatroomId, user);
@@ -34,6 +41,7 @@ export default class extends React.Component {
       <ChatroomIndex
         {...this.state}
         toRegister={() => Actions.register()}
+        onRefresh={this.onRefresh}
         onEnterChatroom={this.onEnterChatroom}
       />
     );
