@@ -36,6 +36,11 @@ class Chatroom {
     const chatroomRef = await this.dbRef.add({ ...chatroom });
     return chatroomRef.id;
   };
+
+  updateGuest = async (chatroomId, user) => {
+    const req = await this.dbRef.doc(chatroomId).update({ ...user });
+    return req;
+  };
 }
 
 export default Chatroom;

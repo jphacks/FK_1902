@@ -28,6 +28,7 @@ export default class extends React.Component {
   };
 
   componentWillUnMount() {
+    // アンマウント時に確認->チャットルーム破棄
     this.unsubscribeChatroom();
     this.unsubscribeMessage();
   }
