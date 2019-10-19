@@ -4,6 +4,6 @@
   "black": "#757575",
   "gray": "#D3D3D3",
   "white": "#FDFDFD",
-  "white-main": "#F8F5F5",
-  "white-accent": "#EDEEFD"
+  "whiteMain": "#F8F5F5",
+  "whiteAccent": "#EDEEFD"
 }
