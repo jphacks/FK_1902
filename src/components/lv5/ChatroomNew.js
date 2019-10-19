@@ -10,22 +10,17 @@ export default class extends React.Component {
   chatroom = new Chatroom();
 
   state = {
-    user: { id: "", name: "", avatar: "" },
     chatroom: { ...Chatroom.properties }
   };
 
-  componentDidMount() {
-    const { user } = this.props;
-    this.setState({
-      user: { id: user.id, name: user.name, avatar: user.avatar }
-    });
-  }
-
   onCreateChatroom = async () => {
-    const { user, chatroom } = this.state;
-    chatroom.host = user;
-    const chatroomId = await this.chatroom.create(chatroom);
-    Actions.chatroom({ chatroomId, isHost: true });
+    const { chatroom } = this.state;
+    const { user } = this.props;
+    chatroom.host = { id: user.docId, name: user.name, avatar: user.avatar };
+
+    const chatroomId = await this.chatroom
+      .create(chatroom)
+      .then(() => Actions.chatroom({ chatroomId, isHost: true }));
   };
 
   render() {

@@ -2,24 +2,17 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, Button } from "react-native";
 
-import { auth } from "app/src/utils/firebase";
 import Chatroom from "app/src/models/chatroom";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
 
   state = {
-    userId: "",
-    user: { id: "", name: "", avatar: "" },
     chatrooms: [{ ...Chatroom.properties }],
     loading: true
   };
 
   componentDidMount() {
-    const { user } = this.props;
-    this.setState({
-      user: { id: user.id, name: user.name, avatar: user.avatar }
-    });
     this.fetchChatrooms();
   }
 
@@ -30,7 +23,7 @@ export default class extends React.Component {
   }
 
   onEnterChatroom = chatroomId => {
-    const { user } = this.state;
+    const { user } = this.props;
     this.chatroom.updateGuest(chatroomId, user);
     Actions.chatroom({ chatroomId, isHost: false });
   };

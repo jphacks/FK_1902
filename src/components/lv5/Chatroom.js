@@ -1,8 +1,6 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
-import { db } from "app/src/utils/firebase";
 
 import Chatroom from "app/src/models/chatroom";
 import Message from "app/src/models/chatroom/message";
@@ -16,20 +14,24 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    const { user, chatroomId } = this.props;
+    const { chatroomId } = this.props;
 
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
   }
 
-  componentWillUnMount = async () => {
+  componentWillUnMount() {
     this.unsubscribeMessage();
-  };
+  }
 
   onSend(messages = []) {
     const { chatroomId } = this.props;
     messages.forEach(message => this.message.create(chatroomId, message));
+  }
+
+  onLeave() {
+    // isHost ? chatroom.delete : chatroom.updateGuest(から)
   }
 
   render() {
