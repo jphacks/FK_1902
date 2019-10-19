@@ -38,7 +38,7 @@ class Chatroom {
   };
 
   updateGuest = async (chatroomId, user) => {
-    const req = await this.dbRef.doc(chatroomId).update({ ...user });
+    const req = await this.dbRef.doc(chatroomId).update({ guest: { ...user } });
     return req;
   };
 }

@@ -6,6 +6,7 @@ import { auth } from "app/src/utils/firebase";
 
 import PhoneInput from "react-native-phone-input";
 import Input from "app/src/components/lv1/Input";
+import AuthenticationTemplate from "app/src/components/lv4/AuthenticationTemplate";
 
 import COUNTRY from "app/src/config/countries.json";
 
@@ -26,8 +27,8 @@ export default class extends React.Component {
     const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
     const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
 
-    auth
-      .phoneNumber(phoneNumberWithDialCode)
+    auth.p;
+    honeNumber(phoneNumberWithDialCode)
       .then(confirmationResult => {
         console.log("SMSを送信しました");
         this.setState({ confirmationResult });
@@ -41,6 +42,14 @@ export default class extends React.Component {
       .confirm(confirmCode)
       .then(res => console.log("userID: ", res.uid))
       .catch(e => console.log(e.message));
+  };
+
+  onPress = () => {
+    console.log("pressed");
+  };
+
+  onChangeText = () => {
+    console.log("onChangeText");
   };
 
   render() {
@@ -60,6 +69,12 @@ export default class extends React.Component {
           value={this.state.confirmCode}
         />
         <Button title="確認コード送信" onPress={this.onConfirm} />
+        <AuthenticationTemplate
+          onChangeText={this.onChangeText}
+          onPress={this.onPress}
+          disabled={false}
+          inputValue="hoge"
+        />
       </View>
     );
   }
