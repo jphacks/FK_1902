@@ -51,7 +51,7 @@ export default class extends React.Component {
     const { user } = this.state;
     await this.chatroom
       .updateGuest(chatroomId, user)
-      .then(() => Actions.chatroom({ chatroomId }));
+      .then(() => Actions.chatroom({ chatroomId, isHost: false }));
   };
 
   render() {
