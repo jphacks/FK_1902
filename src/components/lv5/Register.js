@@ -27,8 +27,8 @@ export default class extends React.Component {
     const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
     const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
 
-    auth.p;
-    honeNumber(phoneNumberWithDialCode)
+    auth
+      .phoneNumber(phoneNumberWithDialCode)
       .then(confirmationResult => {
         console.log("SMSを送信しました");
         this.setState({ confirmationResult });

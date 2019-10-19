@@ -41,6 +41,11 @@ class Chatroom {
     const req = await this.dbRef.doc(chatroomId).update({ guest: { ...user } });
     return req;
   };
+
+  delete = async chatroomId => {
+    const req = await this.dbRef.doc(chatroomId).delete();
+    return req;
+  };
 }
 
 export default Chatroom;

@@ -16,23 +16,14 @@ export default class extends React.Component {
   userDetail = new UserDetail();
 
   state = {
-    userId: "",
     profile: { ...UserDetail.properties },
     avatarSource: ""
   };
 
-  componentDidMount = async () => {
-    const userId = auth.currentUserId();
-    await this.setState({ userId });
-    userId && this.fetchUserProfile();
-  };
-
-  fetchUserProfile() {
-    const { userId } = this.state;
-    this.userDetail
-      .getByUserId(userId)
-      .then(profile => this.setState({ profile }))
-      .catch(e => console.log(e));
+  componentDidMount() {
+    const { user } = this.props;
+    const { profile } = this.state;
+    this.setState({ profile: { ...profile, ...user } });
   }
 
   onChangeProfileText = (target, text) => {
@@ -48,9 +39,10 @@ export default class extends React.Component {
   };
 
   onUpdate = () => {
-    const { userId, profile } = this.state;
+    const { profile } = this.state;
+    delete profile.docId;
     this.userDetail
-      .set(userId, profile)
+      .set(profile.id, profile)
       .then(() => console.log("update ok"))
       .catch(e => console.error(e.message));
   };
@@ -78,9 +70,9 @@ export default class extends React.Component {
   };
 
   imageUpload = async () => {
-    const { userId, profile, avatarSource } = this.state;
+    const { profile, avatarSource } = this.state;
     await this.userDetail
-      .createAvatar(userId, avatarSource)
+      .createAvatar(profile.docId, avatarSource)
       .then(snapShot => {
         this.setState({
           profile: { ...profile, avatar: snapShot.downloadURL }
@@ -91,7 +83,7 @@ export default class extends React.Component {
   };
 
   render() {
-    const { userId, profile, avatarSource } = this.state;
+    const { profile, avatarSource } = this.state;
     const { name, age, gender, avatar } = profile;
 
     return (

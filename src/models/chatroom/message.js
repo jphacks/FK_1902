@@ -25,7 +25,10 @@ class Message {
     this.ref(chatroomId)
       .orderBy("createdAt", "desc")
       .onSnapshot(snapShot => {
-        const messages = snapShotToArray(snapShot);
+        let messages = [];
+        if (!snapShot.empty) {
+          messages = snapShotToArray(snapShot);
+        }
         setMessages(messages);
       });
   };
