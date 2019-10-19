@@ -25,12 +25,8 @@ export default class extends React.Component {
   onSend = () => {
     const { phoneNumber, countryISO2 } = this.state;
     const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
-<<<<<<< HEAD
-    const phoneNumberWithDialCode = `+${dialCode}${phoneNumber}`;
-=======
     const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
 
->>>>>>> 2a33f74093c6fc121aa95f36f878871d9814dd8e
     auth
       .phoneNumber(phoneNumberWithDialCode)
       .then(confirmationResult => {
