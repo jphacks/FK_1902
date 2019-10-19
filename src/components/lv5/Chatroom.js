@@ -52,7 +52,6 @@ export default class extends React.Component {
         }}
         placeholder=""
         alwaysShowSend
-        showAvatarForEveryMessage
       />
     );
   }

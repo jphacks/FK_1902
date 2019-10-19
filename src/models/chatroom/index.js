@@ -4,8 +4,8 @@ import { snapShotToArray, documentToObject } from "app/src/models/utils/format";
 class Chatroom {
   static get properties() {
     return {
-      host: "",
-      guest: "",
+      host: { id: "", name: "", avatar: "" },
+      guest: { id: "", name: "", avatar: "" },
       messages: [],
       detail: {
         title: "",
