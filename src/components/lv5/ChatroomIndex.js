@@ -3,11 +3,9 @@ import { Actions } from "react-native-router-flux";
 import { View, Text, Button } from "react-native";
 
 import { auth } from "app/src/utils/firebase";
-import UserDetail from "app/src/models/userDetail";
 import Chatroom from "app/src/models/chatroom";
 
 export default class extends React.Component {
-  userDetail = new UserDetail();
   chatroom = new Chatroom();
 
   state = {
@@ -17,29 +15,13 @@ export default class extends React.Component {
     loading: true
   };
 
-  componentDidMount = async () => {
-    // user情報はトップページで取得して受け渡すかRootのとこでいい感じに呼び出す
-    const userId = auth.currentUserId();
-    await this.setState({ userId });
-    userId && this.fetchUser();
+  componentDidMount() {
+    const { user } = this.props;
+    this.setState({
+      user: { id: user.id, name: user.name, avatar: user.avatar }
+    });
     this.fetchChatrooms();
-  };
-
-  fetchUser = async () => {
-    const { userId } = this.state;
-    await this.userDetail
-      .getByUserId(userId)
-      .then(profile =>
-        this.setState({
-          user: {
-            id: profile.docId,
-            name: profile.name,
-            avatar: profile.avatar
-          }
-        })
-      )
-      .catch(e => console.log(e));
-  };
+  }
 
   fetchChatrooms() {
     this.chatroom

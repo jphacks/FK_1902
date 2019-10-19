@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   iconLabel: {
     color: COLOR.white,
     fontSize: height * 0.02,
-    marginLeft: width * 0.01
+    marginLeft: width * 0.01,
+    fontWeight: "bold"
   }
 });

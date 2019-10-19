@@ -21,18 +21,9 @@ export default class extends React.Component {
     avatarSource: ""
   };
 
-  componentDidMount = async () => {
-    const userId = auth.currentUserId();
-    await this.setState({ userId });
-    userId && this.fetchUserProfile();
-  };
-
-  fetchUserProfile() {
-    const { userId } = this.state;
-    this.userDetail
-      .getByUserId(userId)
-      .then(profile => this.setState({ profile }))
-      .catch(e => console.log(e));
+  componentDidMount() {
+    const { user } = this.props;
+    this.setState({ profile: user });
   }
 
   onChangeProfileText = (target, text) => {

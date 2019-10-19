@@ -1,15 +1,12 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, Button, Image } from "react-native";
-import { auth } from "app/src/utils/firebase";
 
-import UserDetail from "app/src/models/userDetail";
 import Chatroom from "app/src/models/chatroom";
 
 import Input from "app/src/components/lv1/Input";
 
 export default class extends React.Component {
-  userDetail = new UserDetail();
   chatroom = new Chatroom();
 
   state = {
@@ -18,27 +15,12 @@ export default class extends React.Component {
     chatroom: { ...Chatroom.properties }
   };
 
-  componentDidMount = async () => {
-    const userId = auth.currentUserId();
-    await this.setState({ userId });
-    userId && this.fetchUser();
-  };
-
-  fetchUser = async () => {
-    const { userId } = this.state;
-    await this.userDetail
-      .getByUserId(userId)
-      .then(profile =>
-        this.setState({
-          user: {
-            id: profile.docId,
-            name: profile.name,
-            avatar: profile.avatar
-          }
-        })
-      )
-      .catch(e => console.log(e));
-  };
+  componentDidMount() {
+    const { user } = this.props;
+    this.setState({
+      user: { id: user.id, name: user.name, avatar: user.avatar }
+    });
+  }
 
   onCreateChatroom = async () => {
     const { user, chatroom } = this.state;
