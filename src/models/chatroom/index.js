@@ -21,6 +21,7 @@ class Chatroom {
   getAll = async () => {
     const snapShot = await this.dbRef
       .where("isActive", "==", true)
+      .orderBy("createdAt", "desc")
       .get()
       .catch(e => console.error(e.message));
     return snapShotToArray(snapShot);
