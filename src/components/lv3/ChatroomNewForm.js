@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  ScrollView,
-  RefreshControl,
-  ActivityIndicator,
-  View,
-  Text,
-  Dimensions,
-  StyleSheet
-} from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
 import COLOR from "app/src/config/color.json";
 

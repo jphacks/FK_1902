@@ -10,7 +10,8 @@ export default class extends React.Component {
   state = {
     chatroom: { ...Chatroom.properties },
 
-    isVisibleTagModal: false
+    isVisibleTagModal: false,
+    loading: false
   };
 
   onCreateChatroom = async () => {
@@ -18,7 +19,9 @@ export default class extends React.Component {
     const { user } = this.props;
     chatroom.host = { id: user.docId, name: user.name, avatar: user.avatar };
 
+    this.setState({ loading: true });
     const chatroomId = await this.chatroom.create(chatroom);
+    this.setState({ loading: false });
     Actions.chatroom({ chatroomId, isHost: true });
   };
 

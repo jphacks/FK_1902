@@ -12,6 +12,7 @@ export default ({
   bgColor,
   color = COLOR.white,
   disabled,
+  small,
   style
 }) => {
   const backgroundColor = disabled
@@ -25,12 +26,12 @@ export default ({
       <AwesomeButtonRick
         type="primary"
         textColor={color}
-        textSize={14}
+        textSize={small ? 10 : 14}
         backgroundColor={backgroundColor}
         backgroundDarker={COLOR.gray}
         disabled={disabled}
-        height={height * 0.06}
-        width={width * 0.8}
+        height={small ? height * 0.04 : height * 0.06}
+        width={small ? width * 0.5 : width * 0.8}
         onPress={onPress}>
         {title}
       </AwesomeButtonRick>

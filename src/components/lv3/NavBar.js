@@ -5,12 +5,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  Dimensions,
-  Image
+  Dimensions
 } from "react-native";
 import COLOR from "app/src/config/color.json";
 
 import Icon from "app/src/components/lv1/Icon";
+import Avatar from "app/src/components/lv1/Avatar";
 
 export default props => {
   const { user } = props;
@@ -20,7 +20,7 @@ export default props => {
       <TouchableOpacity
         style={styles.avatarBg}
         onPress={() => Actions.settingProfile()}>
-        <Image style={styles.avatar} source={{ uri: user.avatar }} />
+        <Avatar size={height * 0.05} source={user.avatar} />
       </TouchableOpacity>
       <View style={styles.propertiesWrapper}>
         <View style={styles.iconWrapper}>
@@ -69,12 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.white,
     justifyContent: "center",
     alignItems: "center"
-  },
-  avatar: {
-    height: height * 0.05,
-    width: height * 0.05,
-    borderRadius: 100,
-    backgroundColor: COLOR.gray
   },
   propertiesWrapper: {
     flexDirection: "row",

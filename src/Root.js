@@ -35,17 +35,17 @@ export default class extends React.Component {
     user: { ...UserDetail.properties }
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
+    this.userId = await auth.currentUserId();
     this.fetchUser();
-  }
+  };
 
   fetchUser = async () => {
-    const userId = await auth.currentUserId();
-    if (!userId) {
+    if (!this.userId) {
       Actions.register();
     } else {
       await this.userDetail
-        .getByUserId(userId)
+        .getByUserId(this.userId)
         .then(profile =>
           this.setState({
             user: { ...profile }
@@ -69,7 +69,7 @@ export default class extends React.Component {
                   const Component = item.component;
                   return (
                     <Container bgColor={COLOR.main}>
-                      <Component {...props} user={user} />
+                      <Component {...props} user={user} userId={this.userId} />
                     </Container>
                   );
                 }}
@@ -89,6 +89,7 @@ export default class extends React.Component {
                     <Component
                       {...props}
                       user={user}
+                      userId={this.userId}
                       reloadUser={this.fetchUser}
                     />
                   </Container>
@@ -99,8 +100,9 @@ export default class extends React.Component {
           <Scene
             hideNavBar
             key="chatroom"
-            type="reset"
-            component={props => <Chatroom {...props} user={user} />}
+            component={props => (
+              <Chatroom {...props} user={user} userId={this.userId} />
+            )}
           />
         </Scene>
       </Router>
