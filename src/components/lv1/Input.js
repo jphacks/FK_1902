@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TextInput } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 
 export default ({
   placeholder,
@@ -18,16 +18,18 @@ export default ({
       keyboardType={keyboardType}
       onChangeText={onChangeText}
       {...props}
-      style={style}
+      style={style.input}
     />
   );
 };
 
-const style = {
-  width: "100%",
-  paddingRight: "2%",
-  paddingLeft: "2%",
-  fontSize: 18,
-  paddingTop: 5,
-  paddingBottom: 5
-};
+const style = StyleSheet.create({
+  input: {
+    width: "100%",
+    paddingRight: "2%",
+    paddingLeft: "2%",
+    fontSize: 16,
+    paddingTop: 5,
+    paddingBottom: 5
+  }
+});

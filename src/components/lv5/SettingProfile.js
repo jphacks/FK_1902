@@ -43,7 +43,10 @@ export default class extends React.Component {
     delete profile.docId;
     this.userDetail
       .set(profile.id, profile)
-      .then(() => console.log("update ok"))
+      .then(() => {
+        console.log("update ok");
+        Actions.chatroomIndex();
+      })
       .catch(e => console.error(e.message));
   };
 

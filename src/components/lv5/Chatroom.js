@@ -13,18 +13,23 @@ export default class extends React.Component {
   message = new Message();
 
   state = {
+    chatroom: { ...Chatroom.properties },
     messages: [{ ...Message.properties }]
   };
 
   componentDidMount() {
     const { chatroomId } = this.props;
 
+    this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
+      this.setState({ chatroom });
+    });
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
   }
 
   componentWillUnMount() {
+    this.unsubscribeChatroom();
     this.unsubscribeMessage();
   }
 

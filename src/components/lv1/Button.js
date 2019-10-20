@@ -9,29 +9,37 @@ import COLOR from "app/src/config/color";
 export default ({
   title,
   onPress,
-  backgroundColor,
+  bgColor,
   color = COLOR.white,
-  disabled = false
-}) => (
-  <View style={styles.buttonWrapper}>
-    <AwesomeButtonRick
-      type="primary"
-      textColor={color}
-      textSize={14}
-      backgroundColor={disabled ? COLOR.gray : backgroundColor}
-      backgroundDarker={COLOR.gray}
-      disabled={disabled}
-      height={height * 0.06}
-      width={width * 0.8}
-      onPress={onPress}>
-      {title}
-    </AwesomeButtonRick>
-  </View>
-);
+  disabled,
+  style
+}) => {
+  const backgroundColor = disabled
+    ? COLOR.gray
+    : bgColor
+    ? bgColor
+    : COLOR.main;
+
+  return (
+    <View style={{ ...styles.buttonWrapper, ...style }}>
+      <AwesomeButtonRick
+        type="primary"
+        textColor={color}
+        textSize={14}
+        backgroundColor={backgroundColor}
+        backgroundDarker={COLOR.gray}
+        disabled={disabled}
+        height={height * 0.06}
+        width={width * 0.8}
+        onPress={onPress}>
+        {title}
+      </AwesomeButtonRick>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    marginBottom: height * 0.02,
     alignItems: "center"
   }
 });

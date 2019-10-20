@@ -27,12 +27,26 @@ export default class extends React.Component {
     });
   };
 
+  onClearForm = () => {
+    this.setState({ chatroom: { detail: { ...Chatroom.properties.detail } } });
+  };
+
+  onDeleteTag = value => {
+    const { chatroom } = this.state;
+    const { tags } = chatroom;
+
+    tags.pop(value);
+    this.setState({ chatroom: { tags: { ...tags } } });
+  };
+
   render() {
     return (
       <ChatroomNew
         {...this.state}
         onCreateChatroom={this.onCreateChatroom}
         onChangeDetail={this.onChangeDetail}
+        onClearForm={this.onClearForm}
+        onDeleteTag={this.onDeleteTag}
       />
     );
   }
