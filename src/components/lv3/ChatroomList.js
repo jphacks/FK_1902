@@ -34,7 +34,7 @@ export default props => {
             <ChatroomCard
               chatroom={chatroom}
               key={index}
-              onPress={() => onEnterChatroom(chatroom.docId)}
+              onPress={() => onEnterChatroom(chatroom.docId, chatroom.host.id)}
             />
           ))
         )}

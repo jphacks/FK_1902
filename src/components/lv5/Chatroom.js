@@ -19,25 +19,27 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    const { chatroomId, isHost, userId } = this.props;
+    const { chatroomId, isHost, userId, hostId } = this.props;
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
       this.setState({ chatroom });
-      !isHost && this.notification(true);
     });
     this.unsubscribeMessage = this.message.subscribe(
       chatroomId,
       messages => this.setState({ messages }),
       userId,
+      hostId,
       isHost
     );
+    !isHost && this.notification(true);
   }
 
   notification = isEnter => {
     const { chatroom } = this.state;
     const { chatroomId } = this.props;
+
     const text = isEnter
-      ? `${chatroom.guest.name}さんが入室しました`
+      ? `ユーザが入室しました`
       : `${chatroom.guest.name}さんが退室しました`;
 
     const systemMessage = {
@@ -88,7 +90,7 @@ export default class extends React.Component {
 
   render() {
     const { messages, chatroom } = this.state;
-    const { user } = this.props;
+    const { user, userId } = this.props;
 
     return (
       <>
@@ -97,7 +99,7 @@ export default class extends React.Component {
           messages={messages}
           onSend={messages => this.onSend(messages)}
           user={{
-            _id: user.docId,
+            _id: userId,
             name: user.name,
             avatar: user.avatar
           }}

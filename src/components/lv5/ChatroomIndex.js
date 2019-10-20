@@ -32,10 +32,10 @@ export default class extends React.Component {
     this.setState({ refreshing: false });
   };
 
-  onEnterChatroom = chatroomId => {
+  onEnterChatroom = (chatroomId, hostId) => {
     const { user } = this.props;
     this.chatroom.updateGuest(chatroomId, {}, user);
-    Actions.chatroom({ chatroomId, isHost: false });
+    Actions.chatroom({ chatroomId, isHost: false, hostId });
   };
 
   onDeleteTag = value => {
