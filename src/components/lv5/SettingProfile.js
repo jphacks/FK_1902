@@ -35,7 +35,7 @@ export default class extends React.Component {
   onSignOut = () => {
     auth
       .signOut()
-      .then(() => Actions.refresh())
+      .then(() => Actions.register())
       .catch(e => console.error(e.message));
   };
 
