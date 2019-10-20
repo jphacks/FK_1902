@@ -25,7 +25,7 @@ export default props => {
         <Text style={styles.subText}>{chatroom.host.name}</Text>
       </View>
       <View style={styles.mainWrapper}>
-        <Text style={styles.mainText}>{chatroom.detail.title}</Text>
+        <Text style={styles.mainText}>{chatroom.title}</Text>
       </View>
       <View style={styles.infoWrapper}>
         {chatroom.tags.map(tag => (
