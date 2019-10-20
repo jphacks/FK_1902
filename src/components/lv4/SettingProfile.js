@@ -9,6 +9,7 @@ import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 import LoadingOverlay from "app/src/components/lv2/LoadingOverlay";
 import Picker from "app/src/components/lv1/Picker";
 import Button from "app/src/components/lv1/Button";
+import Avatar from "app/src/components/lv1/Avatar";
 
 export default props => {
   const {
@@ -26,7 +27,11 @@ export default props => {
       <LoadingOverlay loading={loading} />
       <View>
         <View style={styles.avatarWrapper}>
-          <Image style={styles.avatar} source={{ uri: profile.avatar }} />
+          <Avatar
+            size={height * 0.2}
+            style={styles.avatar}
+            source={profile.avatar}
+          />
           <Button
             small
             title="プロフィール画像選択"
@@ -78,11 +83,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   avatar: {
-    height: height * 0.2,
-    width: height * 0.2,
-    borderRadius: 100,
-    marginBottom: height * 0.03,
-    backgroundColor: COLOR.gray
+    marginBottom: height * 0.03
   },
   avatarSelect: {
     height: height * 1.97

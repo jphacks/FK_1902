@@ -3,7 +3,6 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Image,
   Button,
   StyleSheet,
   Dimensions
@@ -12,16 +11,20 @@ import {
 import COLOR from "app/src/config/color.json";
 import TAG from "app/src/config/tags.json";
 
+import Avatar from "app/src/components/lv1/Avatar";
+
 export default props => {
   const { chatroom, onPress } = props;
 
   return (
     <TouchableOpacity style={styles.cardBg} onPress={onPress}>
       <View style={styles.subWrapper}>
-        <Image
+        <Avatar
           style={styles.avatar}
-          source={{ uri: chatroom.host.avatar || "a" }}
+          size={height * 0.03}
+          source={chatroom.host.avatar}
         />
+
         <Text style={styles.subText}>{chatroom.host.name}</Text>
       </View>
       <View style={styles.mainWrapper}>
@@ -59,10 +62,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   avatar: {
-    height: height * 0.03,
-    width: height * 0.03,
-    borderRadius: 100,
-    backgroundColor: COLOR.gray,
     marginRight: width * 0.02
   },
   subText: {
