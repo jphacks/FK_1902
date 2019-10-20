@@ -8,6 +8,8 @@ import Message from "app/src/models/chatroom/message";
 
 import ChatroomNavBar from "app/src/components/lv3/ChatroomNavBar";
 
+import COLOR from "app/src/config/color";
+
 export default class extends React.Component {
   chatroom = new Chatroom();
   message = new Message();
@@ -50,13 +52,29 @@ export default class extends React.Component {
     }
   };
 
+  renderBubble = (props) => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: COLOR.main
+          },
+          left: {
+            backgroundColor: COLOR.accent
+          }
+        }}
+      />
+    );
+  };
+
   render() {
     const { messages } = this.state;
     const { user } = this.props;
 
     return (
       <>
-        <ChatroomNavBar title="ほげ" />
+        <ChatroomNavBar title={this.state.chatroom.detail.title} />
         <GiftedChat
           messages={messages}
           onSend={messages => this.onSend(messages)}
@@ -67,6 +85,7 @@ export default class extends React.Component {
           }}
           placeholder=""
           alwaysShowSend
+          renderBubble={this.renderBubble}
         />
         <Text onPress={this.onLeave}>aaa</Text>
       </>
