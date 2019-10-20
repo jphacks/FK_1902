@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     marginLeft: width * 0.07
   },
   mainText: {
-    fontSize: 16
+    fontSize: 16,
+    color: COLOR.black
   },
   infoWrapper: {
     flexDirection: "row",
