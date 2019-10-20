@@ -40,13 +40,13 @@ export default props => {
         options={constantsToPickerOptions(USER.gender)}
         onValueChange={value => onSelectPicker("gender", value)}
       />
-      <Text>現在のプロフィール写真</Text>
+      {/* <Text>現在のプロフィール写真</Text>
       <Image
         source={{ uri: profile.avatar }}
         style={{ height: 100, minWidth: 100 }}
-      />
+      /> */}
 
-      <Button
+      {/* <Button
         title="新しいプロフィール画像選択"
         onPress={selectAvatar}
         backgroundColor={COLOR.main}
@@ -55,15 +55,17 @@ export default props => {
         title="プロフィール画像更新"
         onPress={imageUpload}
         backgroundColor={COLOR.main}
-      />
+      /> */}
       <Button
-        title="プロフィール更新"
+        title="決定"
         onPress={onUpdate}
         backgroundColor={COLOR.main}
+        style={{ marginBottom: 24 }}
       />
       <Button
         title="ログアウト"
         onPress={onSignOut}
+        bgColor={COLOR.black}
         backgroundColor={COLOR.black}
       />
     </View>
