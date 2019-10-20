@@ -26,7 +26,7 @@ export default props => {
         title="ルーム作成"
         onPress={onCreateChatroom}
         color={COLOR.white}
-        backgroundColor={COLOR.main}
+        backgroundColor={COLOR.accent}
         disabled={false}
       />
     </View>
