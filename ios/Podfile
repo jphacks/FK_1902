@@ -40,6 +40,8 @@ target 'kamatte' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
 
+  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+  pod 'GoogleSignIn', '~> 5.0.0'
 
   target 'kamatteTests' do
     inherit! :search_paths

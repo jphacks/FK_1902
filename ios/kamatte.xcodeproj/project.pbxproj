@@ -15,6 +15,7 @@
 		1B5457E899E450C5D744D4B5 /* libPods-kamatteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D39A71BD0CC0BFE5D4808B /* libPods-kamatteTests.a */; };
 		2A19F3D8235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
 		2A19F3D9235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
+		6C685A87235BF9BA000D1A8A /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C685A86235BF9BA000D1A8A /* libRNGoogleSignin.a */; };
 		CE192E6E8D0A4E3E91BD0459 /* libPods-kamatte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE0DF3C877624A2602904A0 /* libPods-kamatte.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		332A6FF84CB179F0B04DEFA9 /* Pods-kamatteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatteTests.debug.xcconfig"; path = "Target Support Files/Pods-kamatteTests/Pods-kamatteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38D39A71BD0CC0BFE5D4808B /* libPods-kamatteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kamatteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C972596E8032403A78617AD /* Pods-kamatte-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatte-tvOS.release.xcconfig"; path = "Target Support Files/Pods-kamatte-tvOS/Pods-kamatte-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		6C685A80235BF007000D1A8A /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C685A86235BF9BA000D1A8A /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B88B1581B31CC344BA37210 /* Pods-kamatte-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatte-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-kamatte-tvOSTests/Pods-kamatte-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7630FDBA63FFEB478C903A6 /* Pods-kamatte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatte.release.xcconfig"; path = "Target Support Files/Pods-kamatte/Pods-kamatte.release.xcconfig"; sourceTree = "<group>"; };
 		C9F6DDBD5F3869F5E54BC57A /* Pods-kamatte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamatte.debug.xcconfig"; path = "Target Support Files/Pods-kamatte/Pods-kamatte.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C685A87235BF9BA000D1A8A /* libRNGoogleSignin.a in Frameworks */,
 				CE192E6E8D0A4E3E91BD0459 /* libPods-kamatte.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,9 +113,18 @@
 			name = kamatte;
 			sourceTree = "<group>";
 		};
+		217F0D490128485FA4AEBEAF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C685A86235BF9BA000D1A8A /* libRNGoogleSignin.a */,
+				6C685A80235BF007000D1A8A /* libRNGoogleSignin.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EBE0DF3C877624A2602904A0 /* libPods-kamatte.a */,
@@ -153,6 +166,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				454D09771B40EFCE8158C94A /* Pods */,
+				217F0D490128485FA4AEBEAF /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -217,7 +231,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -293,6 +307,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-kamatte/Pods-kamatte-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -313,6 +328,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",

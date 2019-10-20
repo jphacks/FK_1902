@@ -10,6 +10,8 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTBridgeModule.h>
+//#import <RNGoogleSignin/RNGoogleSignin.h>
 
 @import Firebase;
 
@@ -41,7 +43,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
-  
+//  GIDSignIn.sharedInstance.clientID = FIRApp.defaultApp.options.clientID;
   if ([UNUserNotificationCenter class] != nil) {
     // iOS 10 or later
     // For iOS 10 display notification (sent via APNS)
