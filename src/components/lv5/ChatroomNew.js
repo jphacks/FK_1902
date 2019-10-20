@@ -16,9 +16,8 @@ export default class extends React.Component {
     const { user } = this.props;
     chatroom.host = { id: user.docId, name: user.name, avatar: user.avatar };
 
-    const chatroomId = await this.chatroom
-      .create(chatroom)
-      .then(() => Actions.chatroom({ chatroomId, isHost: true }));
+    const chatroomId = await this.chatroom.create(chatroom);
+    Actions.chatroom({ chatroomId, isHost: true });
   };
 
   onChangeDetail = (target, text) => {
