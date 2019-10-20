@@ -10,6 +10,8 @@ import AuthenticationTemplate from "app/src/components/lv4/AuthenticationTemplat
 
 import COUNTRY from "app/src/config/countries.json";
 
+import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
+
 export default class extends React.Component {
   state = {
     phoneNumber: "",
@@ -31,6 +33,7 @@ export default class extends React.Component {
       .phoneNumber(phoneNumberWithDialCode)
       .then(confirmationResult => {
         console.log("SMSを送信しました");
+        console.log(confirmationResult);
         this.setState({ confirmationResult });
       })
       .catch(e => console.error(e.message));
@@ -52,6 +55,38 @@ export default class extends React.Component {
     console.log("onChangeText");
   };
 
+  onLoginOrRegister = () => {
+    auth
+      .siginInWithGoogle()
+      .then(() => {
+        console.log("sign in");
+        Actions.settingProfile();
+      })
+      .catch(e => console.log(e.message));
+    // GoogleSignin.signIn()
+    //   .then(data => {
+    //     // Create a new Firebase credential with the token
+    //     const credential = firebase.auth.GoogleAuthProvider.credential(
+    //       data.idToken,
+    //       data.accessToken
+    //     );
+    //     // Login with the credential
+    //     return firebase.auth().signInWithCredential(credential);
+    //   })
+    //   .then(user => {
+    //     // If you need to do anything with the user, do it here
+    //     // The user will be logged in automatically by the
+    //     // `onAuthStateChanged` listener we set up in App.js earlier
+    //   })
+    //   .catch(error => {
+    //     const { code, message } = error;
+    //     // For details of error codes, see the docs
+    //     // The message contains the default Firebase string
+    //     // representation of the error
+    //     console.error(error.message);
+    //   });
+  };
+
   render() {
     return (
       <View>
@@ -69,6 +104,14 @@ export default class extends React.Component {
           value={this.state.confirmCode}
         />
         <Button title="確認コード送信" onPress={this.onConfirm} />
+
+        <GoogleSigninButton
+          style={{ width: 192, height: 48 }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={this.onLoginOrRegister}
+          disabled={this.state.isSigninInProgress}
+        />
         <AuthenticationTemplate
           onChangeText={this.onChangeText}
           onPress={this.onPress}

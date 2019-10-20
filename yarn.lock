@@ -5360,6 +5360,11 @@ react-native-gifted-chat@^0.11.0:
     react-native-parsed-text "https://github.com/EvanBacon/react-native-parsed-text.git"
     uuid "3.3.3"
 
+react-native-google-signin@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.0.tgz#1142a74aef16cd7d1fc6f0f1b6c82b443f0c86da"
+  integrity sha512-CcOs/M+Xjp8Oxh84Pf+wceHYgsFn9hzsm3veHJMbmnbQZO01LcwnRtgxCZy37Th1tRr+66Xo+ezYOMAudHdBfw==
+
 react-native-image-picker@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
