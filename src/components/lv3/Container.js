@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Dimensions,
-  StyleSheet
-} from "react-native";
+import { SafeAreaView, View, Dimensions, StyleSheet } from "react-native";
 
 import COLOR from "app/src/config/color.json";
 

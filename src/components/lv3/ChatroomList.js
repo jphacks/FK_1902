@@ -4,8 +4,6 @@ import {
   RefreshControl,
   ActivityIndicator,
   View,
-  Text,
-  Button,
   Dimensions,
   StyleSheet
 } from "react-native";
@@ -19,16 +17,6 @@ export default props => {
 
   return (
     <>
-      <View style={styles.filterBg}>
-        <Text
-          style={{
-            backgroundColor: COLOR.accent,
-            width: "80%",
-            height: 20
-          }}>
-          ジャンル
-        </Text>
-      </View>
       <ScrollView
         style={styles.listBg}
         refreshControl={
@@ -60,13 +48,5 @@ const styles = StyleSheet.create({
   listBg: {
     height: "85%",
     backgroundColor: COLOR.whiteMain
-  },
-  filterBg: {
-    height: "15%",
-    backgroundColor: COLOR.whiteMain,
-    borderTopRightRadius: 50,
-    borderTopLeftRadius: 50,
-    justifyContent: "center",
-    alignItems: "center"
   }
 });
