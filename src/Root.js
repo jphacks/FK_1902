@@ -35,24 +35,24 @@ export default class extends React.Component {
     user: { ...UserDetail.properties }
   };
 
-  componentDidMount = async () => {
-    const userId = await auth.currentUserId();
-    if (userId) {
-      this.fetchUser(userId);
-    } else {
-      Actions.register();
-    }
-  };
+  componentDidMount() {
+    this.fetchUser();
+  }
 
-  fetchUser = async userId => {
-    await this.userDetail
-      .getByUserId(userId)
-      .then(profile =>
-        this.setState({
-          user: { ...profile }
-        })
-      )
-      .catch(e => console.log(e));
+  fetchUser = async () => {
+    const userId = await auth.currentUserId();
+    if (!userId) {
+      Actions.register();
+    } else {
+      await this.userDetail
+        .getByUserId(userId)
+        .then(profile =>
+          this.setState({
+            user: { ...profile }
+          })
+        )
+        .catch(e => console.log(e));
+    }
   };
 
   render() {
@@ -86,7 +86,11 @@ export default class extends React.Component {
                 const Component = item.component;
                 return (
                   <Container bgColor={COLOR.whiteMain}>
-                    <Component {...props} user={user} />
+                    <Component
+                      {...props}
+                      user={user}
+                      reloadUser={this.fetchUser}
+                    />
                   </Container>
                 );
               }}

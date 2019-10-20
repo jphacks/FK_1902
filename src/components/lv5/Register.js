@@ -60,6 +60,7 @@ export default class extends React.Component {
       .siginInWithGoogle()
       .then(() => {
         console.log("sign in");
+        this.props.reloadUser();
         Actions.settingProfile();
       })
       .catch(e => console.log(e.message));
@@ -95,8 +96,8 @@ export default class extends React.Component {
           style={{
             color: COLOR.black,
             marginBottom: 40
-          }}
-        >愚痴や悩みを誰かに話してみましょう♪
+          }}>
+          愚痴や悩みを誰かに話してみましょう♪
         </Text>
         <GoogleSigninButton
           style={{ width: 192, height: 48 }}
