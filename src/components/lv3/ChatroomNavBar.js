@@ -13,10 +13,18 @@ import COLOR from "app/src/config/color.json";
 import Icon from "app/src/components/lv1/Icon";
 
 export default props => {
-  const { title } = props;
+  const { title, onPress } = props;
 
   return (
     <View style={styles.chatroomNavBar}>
+      <TouchableOpacity onPress={onPress}>
+        <Icon
+          style={styles.icon}
+          size={height * 0.04}
+          name="chevron-left"
+          color={COLOR.white}
+        />
+      </TouchableOpacity>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{title}</Text>
       </View>
@@ -31,14 +39,14 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.main,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     paddingTop: height * 0.05,
     paddingRight: width * 0.05,
     paddingLeft: width * 0.05
   },
   title: {
     color: COLOR.white,
-    fontSize: height * 0.02,
+    fontSize: 20,
     marginLeft: width * 0.01,
     fontWeight: "bold"
   }

@@ -74,7 +74,10 @@ export default class extends React.Component {
 
     return (
       <>
-        <ChatroomNavBar title={this.state.chatroom.detail.title} />
+        <ChatroomNavBar
+          title={this.state.chatroom.detail.title}
+          onPress={this.onLeave}
+        />
         <GiftedChat
           messages={messages}
           onSend={messages => this.onSend(messages)}
@@ -85,9 +88,9 @@ export default class extends React.Component {
           }}
           placeholder=""
           alwaysShowSend
+          alignTop
           renderBubble={this.renderBubble}
         />
-        <Text onPress={this.onLeave}>aaa</Text>
       </>
     );
   }
