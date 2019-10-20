@@ -8,12 +8,28 @@ import TagSelectModal from "app/src/components/lv3/TagSelectModal";
 import COLOR from "app/src/config/color.json";
 
 export default props => {
+  const {
+    isVisibleTagModal,
+    toggleTagModal,
+    onDeleteTag,
+    onAddTag,
+    selectedTags
+  } = props;
   return (
     <>
-      <TagSelectModal />
+      <TagSelectModal
+        isVisible={isVisibleTagModal}
+        addTag={onAddTag}
+        selectedTags={selectedTags}
+        toggleModal={toggleTagModal}
+      />
       <View>
         <View style={styles.filterBg}>
-          <TagSelectButton {...props} />
+          <TagSelectButton
+            selectedTags={selectedTags}
+            deleteTag={onDeleteTag}
+            toggleModal={toggleTagModal}
+          />
         </View>
         <ChatroomList {...props} />
       </View>

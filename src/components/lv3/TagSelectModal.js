@@ -8,15 +8,16 @@ import Tag from "app/src/components/lv2/Tag";
 import TAG from "app/src/config/tags.json";
 
 export default props => {
-  const { addTag } = props;
+  const { addTag, isVisible, toggleModal } = props;
   const tags = Object.keys(TAG);
 
   return (
-    <Modal isVisible={false} style={styles.bottomModal}>
+    <Modal isVisible={isVisible} style={styles.bottomModal}>
       <View style={styles.modalContent}>
         <TagSelectButton
           {...props}
           isModal
+          toggleModal={toggleModal}
           style={{
             marginRight: "auto",
             marginLeft: "auto",
@@ -25,7 +26,7 @@ export default props => {
         />
         <View style={styles.tagList}>
           {tags.map(tag => (
-            <Tag onPress={() => addTag(TAG[tag])} value={tag} />
+            <Tag addTag={() => addTag(tag)} value={tag} isModal />
           ))}
         </View>
       </View>
