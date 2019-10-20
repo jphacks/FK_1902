@@ -1,6 +1,6 @@
 # Kamatte!!
 
-[![Kamatte!!](https://github.com/jphacks/FK_1902/blob/dev/src/images/kamatte-logo-2.png)]
+![Kamatte!!](https://github.com/jphacks/FK_1902/blob/dev/src/images/kamatte-logo-2.png)
 
 ## 製品概要
 ### X Tech（X → 今回皆さんが選定した好きな言葉に書き換えてください）
