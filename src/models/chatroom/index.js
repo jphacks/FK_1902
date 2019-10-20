@@ -27,10 +27,11 @@ class Chatroom {
   };
 
   subscribe = (chatroomId, setChatroom) => {
-    this.dbRef.doc(chatroomId).onSnapshot(document => {
+    const unsbscribe = this.dbRef.doc(chatroomId).onSnapshot(document => {
       const chatroom = documentToObject(document);
       setChatroom(chatroom);
     });
+    return unsbscribe;
   };
 
   create = async chatroom => {

@@ -22,7 +22,7 @@ class Message {
       .collection("messages");
 
   subscribe = (chatroomId, setMessages) => {
-    this.ref(chatroomId)
+    const unsbscribe = this.ref(chatroomId)
       .orderBy("createdAt", "desc")
       .onSnapshot(snapShot => {
         let messages = [];
@@ -31,6 +31,7 @@ class Message {
         }
         setMessages(messages);
       });
+    return unsbscribe;
   };
 
   create(chatroomId, newMessage) {

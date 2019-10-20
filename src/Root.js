@@ -99,6 +99,7 @@ export default class extends React.Component {
           <Scene
             hideNavBar
             key="chatroom"
+            type="reset"
             component={props => <Chatroom {...props} user={user} />}
           />
         </Scene>

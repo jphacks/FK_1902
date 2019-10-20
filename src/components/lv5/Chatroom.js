@@ -19,7 +19,7 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    const { chatroomId } = this.props;
+    const { chatroomId, isHost } = this.props;
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
       this.setState({ chatroom });
@@ -27,12 +27,26 @@ export default class extends React.Component {
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
+
+    !isHost && this.notification(true);
   }
 
-  componentWillUnMount() {
-    this.unsubscribeChatroom();
-    this.unsubscribeMessage();
-  }
+  notification = isEnter => {
+    const { chatroom } = this.state;
+    const { chatroomId } = this.props;
+    const text = isEnter
+      ? `${chatroom.guest.id}さんが入室しました`
+      : `${chatroom.guest.id}さんが退室しました`;
+
+    const systemMessage = {
+      _id: "system",
+      text: text,
+      createdAt: new Date(),
+      system: true
+    };
+
+    this.message.create(chatroomId, systemMessage);
+  };
 
   onSend(messages = []) {
     const { chatroomId } = this.props;
@@ -44,14 +58,14 @@ export default class extends React.Component {
     const { chatroom } = this.state;
 
     if (isHost) {
-      this.chatroom.delete(chatroomId).then(() => {
-        Actions.chatroomIndex();
-      });
+      this.chatroom.delete(chatroomId);
     } else {
-      this.chatroom
-        .updateGuest(chatroomId, chatroom)
-        .then(() => Actions.chatroomIndex());
+      this.chatroom.updateGuest(chatroomId, chatroom);
+      this.notification(false);
     }
+    this.unsubscribeChatroom();
+    this.unsubscribeMessage();
+    Actions.chatroomIndex();
   };
 
   renderBubble = props => {
