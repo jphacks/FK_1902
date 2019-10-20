@@ -5,29 +5,46 @@ import {
   ActivityIndicator,
   View,
   Text,
-  Button,
   Dimensions,
   StyleSheet
 } from "react-native";
 
 import COLOR from "app/src/config/color.json";
 
+import Button from "app/src/components/lv1/Button";
 import Textarea from "app/src/components/lv1/Textarea";
 import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 
 export default props => {
-  const { chatroom, onChangeDetail, onCreateChatroom } = props;
+  const { chatroom, onChangeDetail, onCreateChatroom, onClearForm } = props;
 
   return (
     <View style={styles.wrapper}>
       <InputWithIcon
-        value={chatroom.title}
+        value={chatroom.detail.title}
         onChangeText={text => onChangeDetail("title", text)}
         placeholder="ルームのタイトルを入力（20文字以内）"
         maxLength={20}
         style={{ marginBottom: 20 }}
       />
-      <Textarea height={height * 0.3} width="88%" placeholder="説明を追加" />
+      <Textarea
+        value={chatroom.detail.content}
+        onChangeText={text => onChangeDetail("content", text)}
+        height={height * 0.3}
+        width="88%"
+        placeholder="説明を追加"
+        style={{ marginBottom: height * 0.03 }}
+      />
+      <Button
+        title="かまってもらう"
+        style={{ marginBottom: height * 0.03 }}
+        onPress={onCreateChatroom}
+      />
+      <Button
+        title="入力情報をクリア"
+        bgColor={COLOR.black}
+        onPress={onClearForm}
+      />
     </View>
   );
 };

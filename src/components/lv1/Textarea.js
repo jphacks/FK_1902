@@ -13,6 +13,7 @@ export default ({
   onChangeText,
   width,
   height,
+  style,
   ...props
 }) => {
   const styles = StyleSheet.create({
@@ -38,7 +39,7 @@ export default ({
   });
 
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...styles.wrapper, ...style }}>
       <Textarea
         containerStyle={styles.textareaWrapper}
         style={styles.textarea}

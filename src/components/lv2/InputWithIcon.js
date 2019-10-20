@@ -14,7 +14,6 @@ export default ({
   style,
   ...props
 }) => {
-  console.log(style);
   return (
     <View style={{ ...style, ...styles.wrapper }}>
       {iconName && (
