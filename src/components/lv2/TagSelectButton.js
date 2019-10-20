@@ -14,10 +14,12 @@ import Tag from "app/src/components/lv2/Tag";
 
 export default ({ open, selectedTags, onDeleteTag }) => {
   return (
-    <TouchableOpacity onPress={open} activeOpacity={1} style={styles.wrapper}>
+    <TouchableOpacity onPress={open} activeOpacity={0.9} style={styles.wrapper}>
       <View style={styles.tags}>
         {selectedTags ? (
-          selectedTags.map(tag => <Tag value={tag} onDeleteTag={onDeleteTag} />)
+          selectedTags.map((tag, index) => (
+            <Tag key={index} value={tag} onPress={() => onDeleteTag(tag)} />
+          ))
         ) : (
           <Text style={styles.placeholder}>ジャンルを指定する</Text>
         )}

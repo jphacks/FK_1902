@@ -11,7 +11,8 @@ export default class extends React.Component {
   state = {
     chatrooms: [{ ...Chatroom.properties }],
     loading: true,
-    refreshing: false
+    refreshing: false,
+    dammySelectedTags: ["1", "3", "4", "5", "6", "9"]
   };
 
   componentDidMount() {
@@ -36,6 +37,12 @@ export default class extends React.Component {
     Actions.chatroom({ chatroomId, isHost: false });
   };
 
+  onDeleteTag = value => {
+    const { dammySelectedTags } = this.state;
+    dammySelectedTags.pop(value);
+    this.setState({ dammySelectedTags });
+  };
+
   render() {
     return (
       <ChatroomIndex
@@ -43,6 +50,8 @@ export default class extends React.Component {
         toRegister={() => Actions.register()}
         onRefresh={this.onRefresh}
         onEnterChatroom={this.onEnterChatroom}
+        selectedTags={this.state.dammySelectedTags}
+        onDeleteTag={this.onDeleteTag}
       />
     );
   }

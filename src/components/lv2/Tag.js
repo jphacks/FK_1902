@@ -5,10 +5,10 @@ import COLOR from "app/src/config/color.json";
 
 import TAG from "app/src/config/tags.json";
 
-export default ({ value, onDeleteTag }) => {
+export default ({ value, onPress }) => {
   return (
     <View style={styles.wrapper}>
-      <Text onPress={onDeleteTag} style={styles.textDecoration}>
+      <Text onPress={onPress} style={styles.textDecoration}>
         ×
       </Text>
       <Text style={styles.text}>{TAG[value]}</Text>
