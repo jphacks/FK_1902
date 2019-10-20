@@ -9,7 +9,6 @@ import Input from "app/src/components/lv1/Input";
 import Picker from "app/src/components/lv1/Picker";
 import Button from "app/src/components/lv1/Button";
 
-
 export default props => {
   const {
     profile,
@@ -23,15 +22,19 @@ export default props => {
 
   return (
     <View>
+      <Text>ユーザーネーム</Text>
       <Input
+        placeholder="ユーザーネームを入力してください"
         value={profile.name}
         onChangeText={text => this.onChangeProfileText("name", text)}
       />
+      <Text>年齢</Text>
       <Picker
         value={profile.age}
         options={constantsToPickerOptions(USER.age)}
         onValueChange={value => onSelectPicker("age", value)}
       />
+      <Text>性別</Text>
       <Picker
         value={profile.gender}
         options={constantsToPickerOptions(USER.gender)}
