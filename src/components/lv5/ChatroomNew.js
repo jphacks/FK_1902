@@ -27,12 +27,17 @@ export default class extends React.Component {
     });
   };
 
+  onClearForm = () => {
+    this.setState({ chatroom: { detail: { ...Chatroom.properties.detail } } });
+  };
+
   render() {
     return (
       <ChatroomNew
         {...this.state}
         onCreateChatroom={this.onCreateChatroom}
         onChangeDetail={this.onChangeDetail}
+        onClearForm={this.onClearForm}
       />
     );
   }
