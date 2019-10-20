@@ -1,10 +1,13 @@
 import React from "react";
-import { Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { GiftedChat } from "react-native-gifted-chat";
+import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 import Chatroom from "app/src/models/chatroom";
 import Message from "app/src/models/chatroom/message";
+
+import ChatroomNavBar from "app/src/components/lv3/ChatroomNavBar";
+
+import COLOR from "app/src/config/color";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
@@ -48,12 +51,32 @@ export default class extends React.Component {
     }
   };
 
+  renderBubble = props => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: COLOR.main
+          },
+          left: {
+            backgroundColor: COLOR.white
+          }
+        }}
+      />
+    );
+  };
+
   render() {
     const { messages } = this.state;
     const { user } = this.props;
 
     return (
       <>
+        <ChatroomNavBar
+          title={this.state.chatroom.detail.title}
+          onPress={this.onLeave}
+        />
         <GiftedChat
           messages={messages}
           onSend={messages => this.onSend(messages)}
@@ -64,8 +87,10 @@ export default class extends React.Component {
           }}
           placeholder=""
           alwaysShowSend
+          alignTop
+          renderBubble={this.renderBubble}
+          renderAvatar={this.renderAvatar}
         />
-        <Text onPress={this.onLeave}>aaa</Text>
       </>
     );
   }
