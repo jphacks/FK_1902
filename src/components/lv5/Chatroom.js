@@ -23,20 +23,19 @@ export default class extends React.Component {
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
       this.setState({ chatroom });
+      !isHost && this.notification(true);
     });
     this.unsubscribeMessage = this.message.subscribe(chatroomId, messages =>
       this.setState({ messages })
     );
-
-    !isHost && this.notification(true);
   }
 
   notification = isEnter => {
     const { chatroom } = this.state;
     const { chatroomId } = this.props;
     const text = isEnter
-      ? `${chatroom.guest.id}さんが入室しました`
-      : `${chatroom.guest.id}さんが退室しました`;
+      ? `${chatroom.guest.name}さんが入室しました`
+      : `${chatroom.guest.name}さんが退室しました`;
 
     const systemMessage = {
       _id: "system",
