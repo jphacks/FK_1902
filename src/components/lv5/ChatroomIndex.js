@@ -34,12 +34,7 @@ export default class extends React.Component {
 
   onEnterChatroom = chatroomId => {
     const { user } = this.props;
-    const guestUser = {
-      id: user.docId,
-      name: user.name,
-      avatar: user.avatar
-    };
-    this.chatroom.updateGuest(chatroomId, guestUser);
+    this.chatroom.updateGuest(chatroomId, {}, user);
     Actions.chatroom({ chatroomId, isHost: false });
   };
 

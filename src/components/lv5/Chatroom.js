@@ -41,14 +41,15 @@ export default class extends React.Component {
 
   onLeave = () => {
     const { chatroomId, isHost } = this.props;
+    const { chatroom } = this.state;
+
     if (isHost) {
       this.chatroom.delete(chatroomId).then(() => {
         Actions.chatroomIndex();
       });
     } else {
-      const emptyUser = { id: "", name: "", avatar: "" };
       this.chatroom
-        .updateGuest(chatroomId, emptyUser)
+        .updateGuest(chatroomId, chatroom)
         .then(() => Actions.chatroomIndex());
     }
   };

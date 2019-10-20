@@ -6,18 +6,21 @@ class Chatroom {
     return {
       host: { id: "", name: "", avatar: "" },
       guest: { id: "", name: "", avatar: "" },
-      messages: [],
       tags: [],
       title: "",
       content: "",
+      isActive: true,
+      guestHistory: [],
       createdAt: ""
     };
   }
 
   dbRef = db.collection("chatrooms");
+  emptyUser = { id: "", name: "", avatar: "" };
 
   getAll = async () => {
     const snapShot = await this.dbRef
+      .where("isActive", "==", true)
       .get()
       .catch(e => console.error(e.message));
     return snapShotToArray(snapShot);
@@ -36,13 +39,30 @@ class Chatroom {
     return chatroomRef.id;
   };
 
-  updateGuest = async (chatroomId, user) => {
-    const req = await this.dbRef.doc(chatroomId).update({ guest: { ...user } });
+  updateGuest = async (chatroomId, chatroom, newUser) => {
+    let req;
+
+    if (newUser) {
+      const guest = {
+        id: newUser.docId,
+        name: newUser.name,
+        avatar: newUser.avatar
+      };
+      req = await this.dbRef.doc(chatroomId).update({ guest });
+    } else {
+      const guestHistory = chatroom.guestHistory;
+      guestHistory.push(chatroom.guest);
+
+      req = await this.dbRef
+        .doc(chatroomId)
+        .update({ guest: { ...this.emptyUser }, guestHistory });
+    }
+
     return req;
   };
 
   delete = async chatroomId => {
-    const req = await this.dbRef.doc(chatroomId).delete();
+    const req = await this.dbRef.doc(chatroomId).update({ isActive: false });
     return req;
   };
 }
