@@ -22,6 +22,7 @@ export default props => {
         addTag={onAddTag}
         selectedTags={selectedTags}
         toggleModal={toggleTagModal}
+        deleteTag={onDeleteTag}
       />
       <View>
         <View style={styles.filterBg}>

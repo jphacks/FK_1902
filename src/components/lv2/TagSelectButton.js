@@ -51,7 +51,7 @@ export default ({ toggleModal, selectedTags, deleteTag, style, isModal }) => {
       <View style={styles.tags}>
         {selectedTags ? (
           selectedTags.map((tag, index) => (
-            <Tag key={index} value={tag} onPress={() => onDeleteTag(tag)} />
+            <Tag key={index} value={tag} deleteTag={() => deleteTag(tag)} />
           ))
         ) : (
           <Text style={styles.placeholder}>ジャンルを指定する</Text>

@@ -19,6 +19,7 @@ export default props => {
         isVisible={isVisibleTagModal}
         addTag={onAddTag}
         selectedTags={chatroom.tags}
+        deleteTag={onDeleteTag}
         toggleModal={toggleTagModal}
       />
       <ChatroomNewForm {...props} />

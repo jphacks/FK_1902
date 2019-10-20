@@ -39,9 +39,10 @@ export default class extends React.Component {
   };
 
   onDeleteTag = value => {
-    const { dammySelectedTags } = this.state;
-    dammySelectedTags.pop(value);
-    this.setState({ dammySelectedTags });
+    const { filterTags } = this.state;
+
+    filterTags.pop(value);
+    this.setState({ filterTags });
   };
 
   toggleTagModal = () => {
@@ -56,10 +57,14 @@ export default class extends React.Component {
 
   render() {
     const { filterTags, chatrooms } = this.state;
-    const filteredChatrooms = chatrooms.filter(chatroom => {
-      // filteredTagsの配列にある値がchatrooms.tagsにあればそれを返す
-      return chatroom;
-    });
+    const filteredChatrooms = chatrooms.reduce((res, cur) => {
+      if (filterTags.length > 0) {
+        cur.tags.forEach(tag => filterTags.includes(tag) && res.push(cur));
+      } else {
+        res.push(cur);
+      }
+      return res;
+    }, []);
 
     return (
       <ChatroomIndex
