@@ -8,7 +8,9 @@ export default class extends React.Component {
   chatroom = new Chatroom();
 
   state = {
-    chatroom: { ...Chatroom.properties }
+    chatroom: { ...Chatroom.properties },
+
+    isVisibleTagModal: false
   };
 
   onCreateChatroom = async () => {
@@ -27,8 +29,20 @@ export default class extends React.Component {
     });
   };
 
+  toggleTagModal = () => {
+    this.setState({ isVisibleTagModal: !this.state.isVisibleTagModal });
+  };
+
   onClearForm = () => {
     this.setState({ chatroom: { detail: { ...Chatroom.properties.detail } } });
+  };
+
+  onAddTag = value => {
+    const { chatroom } = this.state;
+    const { tags } = chatroom;
+
+    !chatroom.tags.includes(value) && tags.push(value);
+    this.setState({ chatroom: { ...chatroom, tags } });
   };
 
   onDeleteTag = value => {
@@ -36,7 +50,7 @@ export default class extends React.Component {
     const { tags } = chatroom;
 
     tags.pop(value);
-    this.setState({ chatroom: { tags: { ...tags } } });
+    this.setState({ chatroom: { ...chatroom, tags } });
   };
 
   render() {
@@ -46,7 +60,9 @@ export default class extends React.Component {
         onCreateChatroom={this.onCreateChatroom}
         onChangeDetail={this.onChangeDetail}
         onClearForm={this.onClearForm}
+        onAddTag={this.onAddTag}
         onDeleteTag={this.onDeleteTag}
+        toggleTagModal={this.toggleTagModal}
       />
     );
   }

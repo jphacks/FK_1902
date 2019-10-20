@@ -69,9 +69,9 @@ export default class extends React.Component {
         onRefresh={this.onRefresh}
         onEnterChatroom={this.onEnterChatroom}
         selectedTags={filterTags}
+        onAddTag={this.onAddTag}
         onDeleteTag={this.onDeleteTag}
         toggleTagModal={this.toggleTagModal}
-        onAddTag={this.onAddTag}
       />
     );
   }
