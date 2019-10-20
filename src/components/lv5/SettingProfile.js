@@ -9,6 +9,7 @@ import UserDetail from "app/src/models/userDetail";
 
 import Input from "app/src/components/lv1/Input";
 import Picker from "app/src/components/lv1/Picker";
+import Logo from "app/src/components/lv1/Logo";
 
 import USER from "app/src/config/user.json";
 
@@ -43,7 +44,10 @@ export default class extends React.Component {
     delete profile.docId;
     this.userDetail
       .set(profile.id, profile)
-      .then(() => console.log("update ok"))
+      .then(() => {
+        console.log("update ok");
+        Actions.chatroomIndex();
+      })
       .catch(e => console.error(e.message));
   };
 
@@ -90,10 +94,14 @@ export default class extends React.Component {
       <View>
         {auth.isSignedIn() ? (
           <>
+            {/* <Logo /> */}
+            <Text>ユーザーネーム</Text>
             <Input
+              placeholder="ユーザーネームを入力"
               value={name}
               onChangeText={text => this.onChangeProfileText("name", text)}
             />
+            <Text>年齢</Text>
             <Picker
               value={age}
               options={constantsToPickerOptions(USER.age)}
@@ -103,6 +111,7 @@ export default class extends React.Component {
                 })
               }
             />
+            <Text>性別</Text>
             <Picker
               value={gender}
               options={constantsToPickerOptions(USER.gender)}
@@ -112,21 +121,21 @@ export default class extends React.Component {
                 })
               }
             />
-            <Text>現在のプロフィール写真</Text>
+            <Text>プロフィール画像</Text>
             <Image
               source={{ uri: profile.avatar }}
               style={{ height: 100, minWidth: 100 }}
             />
             <Button
-              title="新しいプロフィール画像選択"
+              title="プロフィール画像を選択"
               onPress={this.selectAvatar}
             />
-            <Button title="プロフィール画像更新" onPress={this.imageUpload} />
-            <Button title="プロフィール更新" onPress={this.onUpdate} />
+            <Button title="プロフィール画像を更新" onPress={this.imageUpload} />
+            <Button title="決定" onPress={this.onUpdate} />
             <Button title="ログアウト" onPress={this.onSignOut} />
           </>
         ) : (
-          <Text>ログインしてないよ</Text>
+          <Button title="新規登録へ" onPress={Actions.register()} />
         )}
       </View>
     );

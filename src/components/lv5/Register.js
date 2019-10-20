@@ -4,13 +4,11 @@ import { View, Text, Button } from "react-native";
 
 import { auth } from "app/src/utils/firebase";
 
-import PhoneInput from "react-native-phone-input";
-import Input from "app/src/components/lv1/Input";
-import AuthenticationTemplate from "app/src/components/lv4/AuthenticationTemplate";
+import Logo from "app/src/components/lv1/Logo";
 
 import COUNTRY from "app/src/config/countries.json";
 
-import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
+import { GoogleSigninButton } from "react-native-google-signin";
 
 export default class extends React.Component {
   state = {
@@ -20,40 +18,40 @@ export default class extends React.Component {
     confirmCode: ""
   };
 
-  onChangeText = (target, text) => {
-    this.setState({ [target]: text });
-  };
+  // onChangeText = (target, text) => {
+  //   this.setState({ [target]: text });
+  // };
 
-  onSend = () => {
-    const { phoneNumber, countryISO2 } = this.state;
-    const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
-    const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
+  // onSend = () => {
+  //   const { phoneNumber, countryISO2 } = this.state;
+  //   const { dialCode } = COUNTRY.find(country => country.iso2 === countryISO2);
+  //   const phoneNumberWithDialCode = `+${dialCode} ${phoneNumber}`;
 
-    auth
-      .phoneNumber(phoneNumberWithDialCode)
-      .then(confirmationResult => {
-        console.log("SMSを送信しました");
-        console.log(confirmationResult);
-        this.setState({ confirmationResult });
-      })
-      .catch(e => console.error(e.message));
-  };
+  //   auth
+  //     .phoneNumber(phoneNumberWithDialCode)
+  //     .then(confirmationResult => {
+  //       console.log("SMSを送信しました");
+  //       console.log(confirmationResult);
+  //       this.setState({ confirmationResult });
+  //     })
+  //     .catch(e => console.error(e.message));
+  // };
 
-  onConfirm = () => {
-    const { confirmationResult, confirmCode } = this.state;
-    confirmationResult
-      .confirm(confirmCode)
-      .then(res => console.log("userID: ", res.uid))
-      .catch(e => console.log(e.message));
-  };
+  // onConfirm = () => {
+  //   const { confirmationResult, confirmCode } = this.state;
+  //   confirmationResult
+  //     .confirm(confirmCode)
+  //     .then(res => console.log("userID: ", res.uid))
+  //     .catch(e => console.log(e.message));
+  // };
 
-  onPress = () => {
-    console.log("pressed");
-  };
+  // onPress = () => {
+  //   console.log("pressed");
+  // };
 
-  onChangeText = () => {
-    console.log("onChangeText");
-  };
+  // onChangeText = () => {
+  //   console.log("onChangeText");
+  // };
 
   onLoginOrRegister = () => {
     auth
@@ -90,33 +88,13 @@ export default class extends React.Component {
   render() {
     return (
       <View>
-        <Text>新規登録</Text>
-        <PhoneInput
-          initialCountry="jp"
-          ref="phone"
-          onChangePhoneNumber={phoneNumber => this.setState({ phoneNumber })}
-          value={this.state.phoneNumber}
-          onSelectCountry={countryISO2 => this.setState({ countryISO2 })}
-        />
-        <Button title="SMS送信" onPress={this.onSend} />
-        <Input
-          onChangeText={text => this.setState({ confirmCode: text })}
-          value={this.state.confirmCode}
-        />
-        <Button title="確認コード送信" onPress={this.onConfirm} />
-
+        <Logo />
         <GoogleSigninButton
           style={{ width: 192, height: 48 }}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={this.onLoginOrRegister}
           disabled={this.state.isSigninInProgress}
-        />
-        <AuthenticationTemplate
-          onChangeText={this.onChangeText}
-          onPress={this.onPress}
-          disabled={false}
-          inputValue="hoge"
         />
       </View>
     );
