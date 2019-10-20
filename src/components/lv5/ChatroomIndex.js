@@ -12,7 +12,8 @@ export default class extends React.Component {
     chatrooms: [{ ...Chatroom.properties }],
     loading: true,
     refreshing: false,
-    dammySelectedTags: ["1", "3", "4", "5", "6", "9"]
+    isVisibleTagModal: false,
+    filterTags: []
   };
 
   componentDidMount() {
@@ -43,15 +44,34 @@ export default class extends React.Component {
     this.setState({ dammySelectedTags });
   };
 
+  toggleTagModal = () => {
+    this.setState({ isVisibleTagModal: !this.state.isVisibleTagModal });
+  };
+
+  onAddTag = value => {
+    const { filterTags } = this.state;
+    !filterTags.includes(value) && filterTags.push(value);
+    this.setState({ filterTags });
+  };
+
   render() {
+    const { filterTags, chatrooms } = this.state;
+    const filteredChatrooms = chatrooms.filter(chatroom => {
+      // filteredTagsの配列にある値がchatrooms.tagsにあればそれを返す
+      return chatroom;
+    });
+
     return (
       <ChatroomIndex
         {...this.state}
+        chatrooms={filteredChatrooms}
         toRegister={() => Actions.register()}
         onRefresh={this.onRefresh}
         onEnterChatroom={this.onEnterChatroom}
-        selectedTags={this.state.dammySelectedTags}
+        selectedTags={filterTags}
+        onAddTag={this.onAddTag}
         onDeleteTag={this.onDeleteTag}
+        toggleTagModal={this.toggleTagModal}
       />
     );
   }

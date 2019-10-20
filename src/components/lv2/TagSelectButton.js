@@ -12,10 +12,40 @@ import COLOR from "app/src/config/color.json";
 import Icon from "app/src/components/lv1/Icon";
 import Tag from "app/src/components/lv2/Tag";
 
-export default ({ open, selectedTags, onDeleteTag, style }) => {
+export default ({ toggleModal, selectedTags, deleteTag, style, isModal }) => {
+  const bgColor = isModal ? COLOR.white : COLOR.whiteAccent;
+
+  const styles = StyleSheet.create({
+    wrapper: {
+      width: "90%",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: bgColor,
+      borderRadius: 25,
+      minHeight: height * 0.04,
+      paddingTop: height * 0.003,
+      paddingBottom: height * 0.003,
+      paddingLeft: width * 0.02
+    },
+    iconWrapper: {
+      width: "10%"
+    },
+    tags: {
+      flex: 1,
+      flexDirection: "row",
+      alignItems: "center",
+      flexWrap: "wrap"
+    },
+    placeholder: {
+      color: COLOR.black,
+      fontSize: 14
+    }
+  });
+
   return (
     <TouchableOpacity
-      onPress={open}
+      onPress={toggleModal}
       activeOpacity={0.9}
       style={{ ...styles.wrapper, ...style }}>
       <View style={styles.tags}>
@@ -40,30 +70,3 @@ export default ({ open, selectedTags, onDeleteTag, style }) => {
 };
 
 const { width, height } = Dimensions.get("window");
-const styles = StyleSheet.create({
-  wrapper: {
-    width: "90%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: COLOR.whiteAccent,
-    borderRadius: 25,
-    minHeight: height * 0.04,
-    paddingTop: height * 0.003,
-    paddingBottom: height * 0.003,
-    paddingLeft: width * 0.02
-  },
-  iconWrapper: {
-    width: "10%"
-  },
-  tags: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap"
-  },
-  placeholder: {
-    color: COLOR.black,
-    fontSize: 14
-  }
-});
