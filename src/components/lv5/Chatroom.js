@@ -42,7 +42,9 @@ export default class extends React.Component {
   onLeave = () => {
     const { chatroomId, isHost } = this.props;
     if (isHost) {
-      this.chatroom.delete(chatroomId).then(() => Actions.chatroomIndex());
+      this.chatroom.delete(chatroomId).then(() => {
+        Actions.chatroomIndex();
+      });
     } else {
       const emptyUser = { id: "", name: "", avatar: "" };
       this.chatroom
@@ -68,15 +70,12 @@ export default class extends React.Component {
   };
 
   render() {
-    const { messages } = this.state;
+    const { messages, chatroom } = this.state;
     const { user } = this.props;
 
     return (
       <>
-        <ChatroomNavBar
-          title={this.state.chatroom.detail.title}
-          onPress={this.onLeave}
-        />
+        <ChatroomNavBar title={chatroom.title} onPress={this.onLeave} />
         <GiftedChat
           messages={messages}
           onSend={messages => this.onSend(messages)}

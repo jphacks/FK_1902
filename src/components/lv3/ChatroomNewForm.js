@@ -19,7 +19,7 @@ import TagSelectButton from "app/src/components/lv2/TagSelectButton";
 export default props => {
   const {
     chatroom,
-    onChangeDetail,
+    onChangeText,
     onCreateChatroom,
     onClearForm,
     onDeleteTag,
@@ -29,8 +29,8 @@ export default props => {
   return (
     <View style={styles.wrapper}>
       <InputWithIcon
-        value={chatroom.detail.title}
-        onChangeText={text => onChangeDetail("title", text)}
+        value={chatroom.title}
+        onChangeText={text => onChangeText("title", text)}
         placeholder="ルームのタイトルを入力（20文字以内）"
         maxLength={20}
         style={{ marginBottom: 20 }}
@@ -43,8 +43,8 @@ export default props => {
         deleteTag={onDeleteTag}
       />
       <Textarea
-        value={chatroom.detail.content}
-        onChangeText={text => onChangeDetail("content", text)}
+        value={chatroom.content}
+        onChangeText={text => onChangeText("content", text)}
         height={height * 0.3}
         width="88%"
         placeholder="説明を追加"

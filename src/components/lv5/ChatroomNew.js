@@ -22,10 +22,10 @@ export default class extends React.Component {
     Actions.chatroom({ chatroomId, isHost: true });
   };
 
-  onChangeDetail = (target, text) => {
+  onChangeText = (target, text) => {
     const { chatroom } = this.state;
     this.setState({
-      chatroom: { ...chatroom, detail: { ...chatroom.detail, [target]: text } }
+      chatroom: { ...chatroom, [target]: text }
     });
   };
 
@@ -58,7 +58,7 @@ export default class extends React.Component {
       <ChatroomNew
         {...this.state}
         onCreateChatroom={this.onCreateChatroom}
-        onChangeDetail={this.onChangeDetail}
+        onChangeText={this.onChangeText}
         onClearForm={this.onClearForm}
         onAddTag={this.onAddTag}
         onDeleteTag={this.onDeleteTag}

@@ -8,10 +8,8 @@ class Chatroom {
       guest: { id: "", name: "", avatar: "" },
       messages: [],
       tags: [],
-      detail: {
-        title: "",
-        content: ""
-      },
+      title: "",
+      content: "",
       createdAt: ""
     };
   }
