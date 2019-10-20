@@ -1,10 +1,12 @@
 import React from "react";
 import { Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { GiftedChat } from "react-native-gifted-chat";
+import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 import Chatroom from "app/src/models/chatroom";
 import Message from "app/src/models/chatroom/message";
+
+import ChatroomNavBar from "app/src/components/lv3/ChatroomNavBar";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
@@ -48,6 +50,7 @@ export default class extends React.Component {
 
     return (
       <>
+        <ChatroomNavBar title="ほげ" />
         <GiftedChat
           messages={messages}
           onSend={messages => this.onSend(messages)}
