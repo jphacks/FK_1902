@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 
 import Input from "app/src/components/lv1/Input";
 import Button from "app/src/components/lv1/Button";
+import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 
 import COLOR from "app/src/config/color";
 
