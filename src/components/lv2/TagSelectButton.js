@@ -12,9 +12,12 @@ import COLOR from "app/src/config/color.json";
 import Icon from "app/src/components/lv1/Icon";
 import Tag from "app/src/components/lv2/Tag";
 
-export default ({ open, selectedTags, onDeleteTag }) => {
+export default ({ open, selectedTags, onDeleteTag, style }) => {
   return (
-    <TouchableOpacity onPress={open} activeOpacity={0.9} style={styles.wrapper}>
+    <TouchableOpacity
+      onPress={open}
+      activeOpacity={0.9}
+      style={{ ...styles.wrapper, ...style }}>
       <View style={styles.tags}>
         {selectedTags ? (
           selectedTags.map((tag, index) => (
