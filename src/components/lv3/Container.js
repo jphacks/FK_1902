@@ -16,19 +16,8 @@ export default ({ children, bgColor }) => {
     safeAreaView: {
       flex: 1,
       backgroundColor: bgColor
-    },
-    scrollView: {
-      backgroundColor: bgColor,
-      paddingTop: height * 0.05,
-      paddingBottom: height * 0.05,
-      paddingRight: width * 0.04,
-      paddingLeft: width * 0.04
     }
   });
 
-  return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <ScrollView style={styles.scrollView}>{children}</ScrollView>
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styles.safeAreaView}>{children}</SafeAreaView>;
 };
