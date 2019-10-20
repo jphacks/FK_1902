@@ -12,13 +12,11 @@ export default props => {
 
   return (
     <View>
-      <Text>ルームタイトル</Text>
-      <Input
+      <InputWithIcon
         value={chatroom.title}
         onChangeText={text => onChangeDetail("title", text)}
       />
-      <Text>詳細</Text>
-      <Input
+      <InputWithIcon
         value={chatroom.content}
         onChangeText={text => onChangeDetail("content", text)}
       />
