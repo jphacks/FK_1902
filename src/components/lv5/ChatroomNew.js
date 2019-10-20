@@ -1,10 +1,8 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, Button, Image } from "react-native";
 
 import Chatroom from "app/src/models/chatroom";
-
-import Input from "app/src/components/lv1/Input";
+import ChatroomNew from "app/src/components/lv4/ChatroomNew";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
@@ -18,30 +16,29 @@ export default class extends React.Component {
     const { user } = this.props;
     chatroom.host = { id: user.docId, name: user.name, avatar: user.avatar };
 
-    const chatroomId = await this.chatroom
-      .create(chatroom)
-      .then(() => Actions.chatroom({ chatroomId, isHost: true }));
+    const chatroomId = await this.chatroom.create(chatroom);
+    Actions.chatroom({ chatroomId, isHost: true });
+  };
+
+  onChangeDetail = (target, text) => {
+    const { chatroom } = this.state;
+    this.setState({
+      chatroom: { ...chatroom, detail: { ...chatroom.detail, [target]: text } }
+    });
+  };
+
+  onClearForm = () => {
+    this.setState({ chatroom: { detail: { ...Chatroom.properties.detail } } });
   };
 
   render() {
-    const { chatroom } = this.state;
-
     return (
-      <View>
-        <Text>ルームタイトル</Text>
-        <Input
-          value={chatroom.title}
-          onChangeText={text =>
-            this.setState({
-              chatroom: {
-                ...chatroom,
-                detail: { ...chatroom.detail, title: text }
-              }
-            })
-          }
-        />
-        <Button title="ルーム作成" onPress={this.onCreateChatroom} />
-      </View>
+      <ChatroomNew
+        {...this.state}
+        onCreateChatroom={this.onCreateChatroom}
+        onChangeDetail={this.onChangeDetail}
+        onClearForm={this.onClearForm}
+      />
     );
   }
 }

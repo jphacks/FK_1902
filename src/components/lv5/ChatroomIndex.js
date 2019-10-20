@@ -1,15 +1,17 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, Button } from "react-native";
 
 import Chatroom from "app/src/models/chatroom";
+
+import ChatroomIndex from "app/src/components/lv4/ChatroomIndex";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
 
   state = {
     chatrooms: [{ ...Chatroom.properties }],
-    loading: true
+    loading: true,
+    refreshing: false
   };
 
   componentDidMount() {
@@ -22,6 +24,12 @@ export default class extends React.Component {
       .then(chatrooms => this.setState({ chatrooms, loading: false }));
   }
 
+  onRefresh = async () => {
+    this.setState({ refreshing: true });
+    await this.fetchChatrooms();
+    this.setState({ refreshing: false });
+  };
+
   onEnterChatroom = chatroomId => {
     const { user } = this.props;
     this.chatroom.updateGuest(chatroomId, user);
@@ -29,23 +37,13 @@ export default class extends React.Component {
   };
 
   render() {
-    const { chatrooms, loading } = this.state;
-
     return (
-      <View>
-        <Button title="新規登録" onPress={() => Actions.register()} />
-        {loading ? (
-          <Text>loading</Text>
-        ) : (
-          chatrooms.map((chatroom, index) => (
-            <Button
-              key={index}
-              title={chatroom.detail.title}
-              onPress={() => this.onEnterChatroom(chatroom.docId)}
-            />
-          ))
-        )}
-      </View>
+      <ChatroomIndex
+        {...this.state}
+        toRegister={() => Actions.register()}
+        onRefresh={this.onRefresh}
+        onEnterChatroom={this.onEnterChatroom}
+      />
     );
   }
 }
