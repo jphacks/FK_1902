@@ -34,6 +34,7 @@ export default class extends React.Component {
   }
 
   onSend(messages = []) {
+    const { chatroomId } = this.props;
     messages.forEach(message => this.message.create(chatroomId, message));
   }
 
