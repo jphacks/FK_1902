@@ -1,10 +1,13 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, Button, Image } from "react-native";
+import { View, Text, Image } from "react-native";
+
+import COLORS from "app/src/config/color";
 
 import Chatroom from "app/src/models/chatroom";
 
 import Input from "app/src/components/lv1/Input";
+import Button from "app/src/components/lv1/Button";
 
 export default class extends React.Component {
   chatroom = new Chatroom();
@@ -40,7 +43,12 @@ export default class extends React.Component {
             })
           }
         />
-        <Button title="ルーム作成" onPress={this.onCreateChatroom} />
+        <Button
+          title="ルーム作成"
+          onPress={this.onCreateChatroom}
+          color={COLORS.whiteMain}
+          disable={false}
+        />
       </View>
     );
   }
