@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import COLOR from "app/src/config/color.json";
+import TAG from "app/src/config/tags.json";
 
 export default props => {
   const { chatroom, onPress } = props;
@@ -27,9 +28,9 @@ export default props => {
         <Text style={styles.mainText}>{chatroom.detail.title}</Text>
       </View>
       <View style={styles.infoWrapper}>
-        <Text style={styles.infoText}>aaa</Text>
-        <Text style={styles.infoText}>bbb</Text>
-        <Text style={styles.infoText}>ccc</Text>
+        {chatroom.tags.map(tag => (
+          <Text style={styles.infoText}>{TAG[tag]}</Text>
+        ))}
       </View>
     </TouchableOpacity>
   );
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
   },
   infoWrapper: {
     flexDirection: "row",
+    flexWrap: "wrap",
     marginLeft: width * 0.07
   },
   infoText: {

@@ -17,7 +17,14 @@ import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 import TagSelectButton from "app/src/components/lv2/TagSelectButton";
 
 export default props => {
-  const { chatroom, onChangeDetail, onCreateChatroom, onClearForm } = props;
+  const {
+    chatroom,
+    onChangeDetail,
+    onCreateChatroom,
+    onClearForm,
+    onDeleteTag,
+    toggleTagModal
+  } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -28,7 +35,13 @@ export default props => {
         maxLength={20}
         style={{ marginBottom: 20 }}
       />
-      <TagSelectButton {...props} style={{ marginBottom: height * 0.03 }} />
+      <TagSelectButton
+        toggleModal={toggleTagModal}
+        {...props}
+        selectedTags={chatroom.tags}
+        style={{ marginBottom: height * 0.03 }}
+        deleteTag={onDeleteTag}
+      />
       <Textarea
         value={chatroom.detail.content}
         onChangeText={text => onChangeDetail("content", text)}
