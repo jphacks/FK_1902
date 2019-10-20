@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
@@ -52,7 +51,7 @@ export default class extends React.Component {
     }
   };
 
-  renderBubble = (props) => {
+  renderBubble = props => {
     return (
       <Bubble
         {...props}
@@ -61,7 +60,7 @@ export default class extends React.Component {
             backgroundColor: COLOR.main
           },
           left: {
-            backgroundColor: COLOR.accent
+            backgroundColor: COLOR.white
           }
         }}
       />
@@ -90,6 +89,7 @@ export default class extends React.Component {
           alwaysShowSend
           alignTop
           renderBubble={this.renderBubble}
+          renderAvatar={this.renderAvatar}
         />
       </>
     );
