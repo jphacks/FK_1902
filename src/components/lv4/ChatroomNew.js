@@ -1,11 +1,13 @@
 import React from "react";
 
+import LoadingOverlay from "app/src/components/lv2/LoadingOverlay";
 import ChatroomNewForm from "app/src/components/lv3/ChatroomNewForm";
 import TagSelectModal from "app/src/components/lv3/TagSelectModal";
 
 export default props => {
   const {
     chatroom,
+    loading,
     isVisibleTagModal,
     toggleTagModal,
     onDeleteTag,
@@ -15,6 +17,7 @@ export default props => {
 
   return (
     <>
+      <LoadingOverlay loading={loading} />
       <TagSelectModal
         isVisible={isVisibleTagModal}
         addTag={onAddTag}

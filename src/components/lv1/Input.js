@@ -16,7 +16,7 @@ export default ({
       value={value}
       maxLength={maxLength}
       keyboardType={keyboardType}
-      onChangeText={onChangeText}
+      onChangeText={text => onChangeText(text)}
       {...props}
       style={style.input}
     />

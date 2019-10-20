@@ -49,7 +49,7 @@ export default ({ toggleModal, selectedTags, deleteTag, style, isModal }) => {
       activeOpacity={0.9}
       style={{ ...styles.wrapper, ...style }}>
       <View style={styles.tags}>
-        {selectedTags ? (
+        {selectedTags.length > 0 ? (
           selectedTags.map((tag, index) => (
             <Tag key={index} value={tag} deleteTag={() => deleteTag(tag)} />
           ))

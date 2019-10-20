@@ -12,7 +12,8 @@ export default class extends React.Component {
 
   state = {
     profile: { ...UserDetail.properties },
-    avatarSource: ""
+    avatarSource: "",
+    loading: false
   };
 
   componentDidMount() {
@@ -21,7 +22,7 @@ export default class extends React.Component {
     this.setState({ profile: { ...profile, ...user } });
   }
 
-  onChangeProfileText = (target, text) => {
+  onChangeText = (target, text) => {
     const { profile } = this.state;
     this.setState({ profile: { ...profile, [target]: text } });
   };
@@ -35,18 +36,6 @@ export default class extends React.Component {
     auth
       .signOut()
       .then(() => Actions.refresh())
-      .catch(e => console.error(e.message));
-  };
-
-  onUpdate = () => {
-    const { profile } = this.state;
-    delete profile.docId;
-    this.userDetail
-      .set(profile.id, profile)
-      .then(() => {
-        console.log("update ok");
-        Actions.chatroomIndex();
-      })
       .catch(e => console.error(e.message));
   };
 
@@ -74,25 +63,44 @@ export default class extends React.Component {
 
   imageUpload = async () => {
     const { profile, avatarSource } = this.state;
+    this.setState({ loading: true });
     await this.userDetail
       .createAvatar(profile.docId, avatarSource)
       .then(snapShot => {
+        console.log("res", snapShot);
         this.setState({
-          profile: { ...profile, avatar: snapShot.downloadURL }
+          profile: { ...profile, avatar: snapShot.downloadURL },
+          loading: false,
+          avatarSource: ""
         });
-        this.onUpdate();
       })
-      .catch(e => console.error);
+      .catch(e => this.setState({ loading: false }));
+  };
+
+  onUpdate = () => {
+    const { avatarSource } = this.state;
+    avatarSource && this.imageUpload();
+
+    const { userId } = this.props;
+    const { profile } = this.state;
+
+    delete profile.docId;
+    this.userDetail
+      .set(userId, profile)
+      .then(() => {
+        this.props.reloadUser();
+        Actions.chatroomIndex();
+      })
+      .catch(e => console.error(e.message));
   };
 
   render() {
     return (
       <SettingProfile
         {...this.state}
-        onChangeProfileText={this.onChangeProfileText}
+        onChangeText={this.onChangeText}
         onSelectPicker={this.onSelectPicker}
         selectAvatar={this.selectAvatar}
-        imageUpload={this.imageUpload}
         onUpdate={this.onUpdate}
         onSignOut={this.onSignOut}
       />
