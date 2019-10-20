@@ -7,6 +7,7 @@ class Chatroom {
       host: { id: "", name: "", avatar: "" },
       guest: { id: "", name: "", avatar: "" },
       messages: [],
+      tags: [],
       detail: {
         title: "",
         content: ""
