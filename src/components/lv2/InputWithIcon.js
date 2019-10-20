@@ -6,9 +6,17 @@ import Icon from "app/src/components/lv1/Icon";
 
 import COLOR from "app/src/config/color.json";
 
-export default ({ iconName, iconSize, iconColor, inputValue, ...props }) => {
+export default ({
+  iconName,
+  iconSize,
+  iconColor,
+  inputValue,
+  style,
+  ...props
+}) => {
+  console.log(style);
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...style, ...styles.wrapper }}>
       {iconName && (
         <Icon
           name={iconName}
