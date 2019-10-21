@@ -1,6 +1,6 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { Alert } from "react-native";
+import { Alert, BackHandler } from "react-native";
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 import Chatroom from "app/src/models/chatroom";
@@ -20,6 +20,11 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
+    this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      this.onLeave();
+      return true;
+    });
+
     const { chatroomId, isHost, userId, hostId } = this.props;
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
@@ -85,9 +90,10 @@ export default class extends React.Component {
       this.chatroom.updateGuest(chatroomId, chatroom);
       this.notification(false);
     }
+    this.backHandler.remove();
     this.unsubscribeChatroom();
     this.unsubscribeMessage();
-    Actions.chatroomIndex();
+    Actions.pop();
   };
 
   renderBubble = props => {

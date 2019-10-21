@@ -37,7 +37,8 @@ export const auth = {
   },
   siginInWithGoogle: async () => {
     await GoogleSignin.configure({
-      webClientId: ""
+      webClientId:
+        "72871638060-3tuhl7oo8j0dp4rrr3821ssct91jc6j8.apps.googleusercontent.com"
     });
     const { accessToken, idToken } = await GoogleSignin.signIn();
     const credential = firebase.auth.GoogleAuthProvider.credential(

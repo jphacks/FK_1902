@@ -62,7 +62,9 @@ export default class extends React.Component {
     return (
       <Router>
         <Scene hideNavBar key="root">
-          <Tabs key="tabs" tabBarComponent={TabBar}>
+          <Tabs
+            key="tabs"
+            tabBarComponent={({ focused }) => <TabBar active={focused} />}>
             {tabComponents.map(item => (
               <Scene
                 key={item.key}
