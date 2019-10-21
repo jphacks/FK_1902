@@ -23,6 +23,10 @@ export default class extends React.Component {
     const { chatroomId, isHost, userId, hostId } = this.props;
 
     this.unsubscribeChatroom = this.chatroom.subscribe(chatroomId, chatroom => {
+      if (!chatroom.isActive) {
+        Alert.alert("", "ルームが削除されました");
+        this._leave();
+      }
       this.setState({ chatroom });
     });
     this.unsubscribeMessage = this.message.subscribe(
@@ -39,7 +43,6 @@ export default class extends React.Component {
     const { chatroom } = this.state;
     const { chatroomId } = this.props;
 
-    console.log(chatroom);
     const text = isEnter
       ? `ユーザが入室しました`
       : `${chatroom.guest.name}さんが退室しました`;
@@ -60,29 +63,31 @@ export default class extends React.Component {
   }
 
   onLeave = () => {
-    const { chatroomId, isHost } = this.props;
-    const { chatroom } = this.state;
+    const { isHost } = this.props;
 
     if (isHost) {
       Alert.alert("", "ルームを削除します。よろしいですか？", [
         { text: "いいえ" },
-        { text: "はい", onPress: () => leave() }
+        { text: "はい", onPress: () => this._leave() }
       ]);
     } else {
-      leave();
+      this._leave();
     }
+  };
 
-    const leave = () => {
-      if (isHost) {
-        this.chatroom.delete(chatroomId);
-      } else {
-        this.chatroom.updateGuest(chatroomId, chatroom);
-        this.notification(false);
-      }
-      this.unsubscribeChatroom();
-      this.unsubscribeMessage();
-      Actions.chatroomIndex();
-    };
+  _leave = () => {
+    const { chatroomId, isHost } = this.props;
+    const { chatroom } = this.state;
+
+    if (isHost) {
+      this.chatroom.delete(chatroomId);
+    } else {
+      this.chatroom.updateGuest(chatroomId, chatroom);
+      this.notification(false);
+    }
+    this.unsubscribeChatroom();
+    this.unsubscribeMessage();
+    Actions.chatroomIndex();
   };
 
   renderBubble = props => {
