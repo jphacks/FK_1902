@@ -4,6 +4,7 @@ import { Actions } from "react-native-router-flux";
 import ImagePicker from "react-native-image-picker";
 
 import { auth } from "app/src/utils/firebase";
+import errorAlert from "app/src/utils/errorAlert";
 import UserDetail from "app/src/models/userDetail";
 
 import SettingProfile from "app/src/components/lv4/SettingProfile";
@@ -59,29 +60,26 @@ export default class extends React.Component {
     });
   };
 
-  imageUpload = async () => {
+  imageUpload = () => {
     const { profile, avatarSource } = this.state;
-    this.setState({ loading: true });
-    await this.userDetail
+    const req = this.userDetail
       .createAvatar(profile.docId, avatarSource)
       .then(snapShot => {
-        console.log("res", snapShot);
         this.setState({
           profile: { ...profile, avatar: snapShot.downloadURL },
-          loading: false,
           avatarSource: ""
         });
       })
-      .catch(e => this.setState({ loading: false }));
+      .catch(e => {
+        throw new Error();
+      });
+
+    return req;
   };
 
-  onUpdate = () => {
-    const { avatarSource } = this.state;
-    avatarSource && this.imageUpload();
-
-    const { userId } = this.props;
+  onUpdate = async () => {
+    // バリデーション
     const { profile } = this.state;
-
     this.setState({ errorMessage: { name: "", gender: "", age: "" } });
 
     !profile.name &&
@@ -114,14 +112,33 @@ export default class extends React.Component {
       return false;
     }
 
-    delete profile.docId;
+    this.setState({ loading: true });
+    // 画像アップロード
+    const { avatarSource } = this.state;
+    if (avatarSource) {
+      try {
+        await this.imageUpload();
+      } catch (e) {
+        errorAlert();
+        this.setState({ loading: false });
+        return false;
+      }
+    }
+
+    // 更新
+    const { userId } = this.props;
+    const newProfile = this.state.profile;
+
+    delete newProfile.docId;
+
     this.userDetail
-      .set(userId, profile)
+      .set(userId, newProfile)
       .then(() => {
         this.props.reloadUser();
         Actions.chatroomIndex();
       })
-      .catch(e => console.error(e.message));
+      .catch(() => errorAlert());
+    this.setState({ loading: false });
   };
 
   render() {

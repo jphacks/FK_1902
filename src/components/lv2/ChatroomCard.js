@@ -23,6 +23,7 @@ export default props => {
           style={styles.avatar}
           size={height * 0.03}
           source={chatroom.host.avatar}
+          bgColor={COLOR.gray}
         />
 
         <Text style={styles.subText}>{chatroom.host.name}</Text>

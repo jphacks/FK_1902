@@ -17,6 +17,7 @@ export default props => {
     profile,
     onChange,
     selectAvatar,
+    avatarSource,
     onUpdate,
     onSignOut,
     onDeleteAccount,
@@ -33,7 +34,8 @@ export default props => {
           <Avatar
             size={height * 0.2}
             style={styles.avatar}
-            source={profile.avatar}
+            source={avatarSource || profile.avatar}
+            bgColor={COLOR.white}
           />
           <Button
             small
@@ -102,7 +104,8 @@ const { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   avatarWrapper: {
     alignItems: "center",
-    height: height * 0.3
+    height: height * 0.3,
+    justifyContent: "space-around"
   },
   inputs: {
     paddingTop: height * 0.05,
