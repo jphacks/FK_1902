@@ -61,7 +61,9 @@ export default props => {
           <Picker
             value={profile.age}
             options={constantsToPickerOptions(USER.age)}
-            onValueChange={value => onSelectPicker("age", value)}
+            onValueChange={value => onChange("age")(value)}
+            width="60%"
+            height={height * 0.1}
           />
         </View>
         <View style={styles.errorMessageWrapper}>
