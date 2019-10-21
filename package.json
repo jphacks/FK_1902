@@ -12,6 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "firebase-tools": "^7.6.1",
     "react": "16.9.0",
     "react-native": "0.61.2",
     "react-native-fcm": "^16.2.4",
