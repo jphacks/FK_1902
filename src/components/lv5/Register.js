@@ -20,15 +20,12 @@ export default class extends React.Component {
     auth
       .siginInWithGoogle()
       .then(() => {
-        this.props.reloadUser();
-        console.log(this.props);
-        // Actions.settingProfile();
+        this.props.reloadUser({ isUserCreate: true });
       })
       .catch(e => {
         this.setState({ isSigninInProgress: false });
         console.log(e.message);
       });
-    console.log(this.props);
   };
 
   render() {

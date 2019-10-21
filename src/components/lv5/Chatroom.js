@@ -38,6 +38,7 @@ export default class extends React.Component {
     const { chatroom } = this.state;
     const { chatroomId } = this.props;
 
+    console.log(chatroom);
     const text = isEnter
       ? `ユーザが入室しました`
       : `${chatroom.guest.name}さんが退室しました`;

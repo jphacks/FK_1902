@@ -35,22 +35,22 @@ export default class extends React.Component {
     user: { ...UserDetail.properties }
   };
 
-  componentDidMount = async () => {
-    this.userId = await auth.currentUserId();
+  componentDidMount() {
     this.fetchUser();
-  };
+  }
 
   fetchUser = async () => {
+    this.userId = await auth.currentUserId();
     if (!this.userId) {
       Actions.register();
     } else {
       await this.userDetail
         .getByUserId(this.userId)
-        .then(profile =>
+        .then(profile => {
           this.setState({
             user: { ...profile }
-          })
-        )
+          });
+        })
         .catch(e => console.log(e));
     }
   };
