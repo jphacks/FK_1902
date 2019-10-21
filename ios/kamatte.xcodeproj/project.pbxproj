@@ -14,9 +14,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1B5457E899E450C5D744D4B5 /* libPods-kamatteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D39A71BD0CC0BFE5D4808B /* libPods-kamatteTests.a */; };
 		2A19F3D8235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
-		2A19F3D9235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
-		2A19F3DA235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
-		2A19F3DB235857EE00E9811E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A19F3D7235857ED00E9811E /* GoogleService-Info.plist */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -313,7 +310,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = TZJ8LQ2694;
+						DevelopmentTeam = ND4YF4VDF4;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -371,7 +368,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A19F3D9235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-				2A19F3DA235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +393,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A19F3DB235857EE00E9811E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,7 +678,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = TZJ8LQ2694;
+				DEVELOPMENT_TEAM = ND4YF4VDF4;
 				INFOPLIST_FILE = kamatte/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -692,7 +686,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hot-motto-chili-pappers.kamatte";
+				PRODUCT_BUNDLE_IDENTIFIER = com.susiyaki.kamatte;
 				PRODUCT_NAME = kamatte;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -704,7 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TZJ8LQ2694;
+				DEVELOPMENT_TEAM = ND4YF4VDF4;
 				INFOPLIST_FILE = kamatte/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -712,7 +706,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hot-motto-chili-pappers.kamatte";
+				PRODUCT_BUNDLE_IDENTIFIER = com.susiyaki.kamatte;
 				PRODUCT_NAME = kamatte;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

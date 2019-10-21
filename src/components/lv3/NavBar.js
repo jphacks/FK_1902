@@ -17,10 +17,12 @@ export default props => {
 
   return (
     <View style={styles.navBar}>
-      <TouchableOpacity
-        style={styles.avatarBg}
-        onPress={() => Actions.settingProfile()}>
-        <Avatar size={height * 0.05} source={user.avatar} />
+      <TouchableOpacity style={styles.avatarBg}>
+        <Avatar
+          size={height * 0.055}
+          source={user.avatar}
+          onPress={() => Actions.settingProfile()}
+        />
       </TouchableOpacity>
       <View style={styles.propertiesWrapper}>
         <View style={styles.iconWrapper}>
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     height: height * 0.06,
     width: height * 0.06,
     borderRadius: 100,
-    backgroundColor: COLOR.white,
+    backgroundColor: COLOR.whiteMain,
     justifyContent: "center",
     alignItems: "center"
   },

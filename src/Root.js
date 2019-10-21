@@ -50,6 +50,7 @@ export default class extends React.Component {
           this.setState({
             user: { ...profile }
           });
+          !profile.name && Actions.settingProfile({ isUserCreate: true });
         })
         .catch(e => console.log(e));
     }

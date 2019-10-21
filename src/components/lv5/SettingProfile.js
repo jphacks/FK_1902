@@ -13,7 +13,8 @@ export default class extends React.Component {
   state = {
     profile: { ...UserDetail.properties },
     avatarSource: "",
-    loading: false
+    loading: false,
+    errorMessage: { name: "" }
   };
 
   componentDidMount() {
@@ -84,6 +85,11 @@ export default class extends React.Component {
     const { userId } = this.props;
     const { profile } = this.state;
 
+    if (!profile.name) {
+      this.setState({ errorMessage: { name: "表示名を入力して下さい" } });
+      return false;
+    }
+
     delete profile.docId;
     this.userDetail
       .set(userId, profile)
@@ -95,6 +101,8 @@ export default class extends React.Component {
   };
 
   render() {
+    const { isUserCreate } = this.props;
+
     return (
       <SettingProfile
         {...this.state}
@@ -103,6 +111,7 @@ export default class extends React.Component {
         selectAvatar={this.selectAvatar}
         onUpdate={this.onUpdate}
         onSignOut={this.onSignOut}
+        isUserCreate={isUserCreate}
       />
     );
   }

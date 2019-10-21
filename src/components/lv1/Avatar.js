@@ -3,7 +3,7 @@ import { TouchableOpacity, Image, StyleSheet } from "react-native";
 
 import COLOR from "app/src/config/color.json";
 
-export default ({ size, style, source }) => {
+export default ({ size, style, source, onPress }) => {
   const styles = StyleSheet.create({
     image: {
       height: size,
@@ -14,7 +14,7 @@ export default ({ size, style, source }) => {
   });
 
   return (
-    <TouchableOpacity activeOpacity={1} style={style}>
+    <TouchableOpacity activeOpacity={1} style={style} onPress={onPress}>
       <Image style={styles.image} source={{ uri: source }} />
     </TouchableOpacity>
   );

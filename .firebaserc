@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "kamatte-17164"
+    "default": "kamatte-17164",
+    "production": "kamatte-26d90"
   }
 }

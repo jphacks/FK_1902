@@ -4,7 +4,7 @@ import constantsToPickerOptions from "app/src/utils/constantsToPickerOptions";
 import USER from "app/src/config/user.json";
 import COLOR from "app/src/config/color";
 
-import { View, Dimensions, Image, StyleSheet } from "react-native";
+import { View, Text, Dimensions, Image, StyleSheet } from "react-native";
 import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 import LoadingOverlay from "app/src/components/lv2/LoadingOverlay";
 import Picker from "app/src/components/lv1/Picker";
@@ -19,7 +19,9 @@ export default props => {
     selectAvatar,
     onUpdate,
     onSignOut,
-    loading
+    loading,
+    isUserCreate,
+    errorMessage
   } = props;
 
   return (
@@ -41,7 +43,7 @@ export default props => {
         </View>
         <View style={styles.inputs}>
           <InputWithIcon
-            placeholder="ユーザーネームを入力してください"
+            placeholder="表示名"
             iconName="account"
             value={profile.name}
             onChangeText={text => onChangeText("name", text)}
@@ -57,18 +59,23 @@ export default props => {
             onValueChange={value => onSelectPicker("gender", value)}
           />
         </View>
+        <Text color={COLOR.main} size={10}>
+          {errorMessage.name}
+        </Text>
         <View style={styles.actions}>
           <Button
-            title="設定して戻る"
+            title={isUserCreate ? "プロフィール設定" : "設定して戻る"}
             onPress={onUpdate}
             bgColor={COLOR.main}
             style={{ marginBottom: 24 }}
           />
-          <Button
-            title="ログアウト"
-            onPress={onSignOut}
-            bgColor={COLOR.black}
-          />
+          {!isUserCreate && (
+            <Button
+              title="ログアウト"
+              onPress={onSignOut}
+              bgColor={COLOR.black}
+            />
+          )}
         </View>
       </View>
     </>
@@ -92,6 +99,7 @@ const styles = StyleSheet.create({
     height: height * 0.4
   },
   actions: {
-    height: height * 0.3
+    height: height * 0.3,
+    justifyContent: "center"
   }
 });
