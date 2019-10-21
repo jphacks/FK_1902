@@ -17,6 +17,7 @@ export default ({
       maxLength={maxLength}
       keyboardType={keyboardType}
       onChangeText={text => onChangeText(text)}
+      autoCapitalize="none"
       {...props}
       style={style.input}
     />

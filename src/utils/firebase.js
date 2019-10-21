@@ -64,10 +64,15 @@ export const auth = {
               },
               {
                 text: "はい",
-                onPress: () => {
-                  const currentUser = firebase.auth().currentUser;
-                  currentUser.delete().catch(() => errorAlert());
-                  Actions.register();
+                onPress: async () => {
+                  const currentUser = await firebase.auth().currentUser;
+                  currentUser
+                    .delete()
+                    .then(() => Actions.register())
+                    .catch(e => {
+                      console.log(e.message);
+                      errorAlert();
+                    });
                 }
               }
             ]

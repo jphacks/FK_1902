@@ -47,6 +47,7 @@ export default ({
         defaultValue={value}
         maxLength={maxLength}
         onChangeText={onChangeText}
+        autoCapitalize="none"
         {...props}
         style={styles.input}
       />
