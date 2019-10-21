@@ -37,7 +37,7 @@ export default class extends React.Component {
   };
 
   onClearForm = () => {
-    this.setState({ chatroom: { detail: { ...Chatroom.properties.detail } } });
+    this.setState({ chatroom: Chatroom.properties });
   };
 
   onAddTag = value => {
