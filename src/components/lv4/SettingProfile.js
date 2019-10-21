@@ -5,6 +5,7 @@ import USER from "app/src/config/user.json";
 import COLOR from "app/src/config/color";
 
 import { View, Text, Dimensions, Image, StyleSheet } from "react-native";
+import CheckBox from "app/src/components/lv1/CheckBox";
 import InputWithIcon from "app/src/components/lv2/InputWithIcon";
 import LoadingOverlay from "app/src/components/lv2/LoadingOverlay";
 import Picker from "app/src/components/lv1/Picker";
@@ -14,8 +15,7 @@ import Avatar from "app/src/components/lv1/Avatar";
 export default props => {
   const {
     profile,
-    onChangeText,
-    onSelectPicker,
+    onChange,
     selectAvatar,
     onUpdate,
     onSignOut,
@@ -46,35 +46,48 @@ export default props => {
             placeholder="表示名"
             iconName="account"
             value={profile.name}
-            onChangeText={text => onChangeText("name", text)}
+            onChangeText={text => onChange("name")(text)}
+          />
+          <CheckBox
+            onPress={onChange("gender")}
+            options={constantsToPickerOptions(USER.gender)}
+            isSelected={profile.gender}
+            width={width * 0.7}
+            style={{
+              marginRight: "auto",
+              marginLeft: "auto"
+            }}
           />
           <Picker
             value={profile.age}
             options={constantsToPickerOptions(USER.age)}
             onValueChange={value => onSelectPicker("age", value)}
           />
-          <Picker
-            value={profile.gender}
-            options={constantsToPickerOptions(USER.gender)}
-            onValueChange={value => onSelectPicker("gender", value)}
-          />
         </View>
-        <Text color={COLOR.main} size={10}>
-          {errorMessage.name}
-        </Text>
+        <View style={styles.errorMessageWrapper}>
+          {Object.values(errorMessage).map(message => (
+            <Text style={styles.errorMessage}>{message}</Text>
+          ))}
+        </View>
         <View style={styles.actions}>
           <Button
             title={isUserCreate ? "プロフィール設定" : "設定して戻る"}
             onPress={onUpdate}
             bgColor={COLOR.main}
-            style={{ marginBottom: 24 }}
           />
-          {!isUserCreate && (
-            <Button
-              title="ログアウト"
-              onPress={onSignOut}
-              bgColor={COLOR.black}
-            />
+          {isUserCreate && (
+            <>
+              <Button
+                title="ログアウト"
+                onPress={onSignOut}
+                bgColor={COLOR.black}
+              />
+              <Button
+                title="アカウント削除"
+                onPress={onSignOut}
+                bgColor={COLOR.black}
+              />
+            </>
           )}
         </View>
       </View>
@@ -86,20 +99,27 @@ const { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   avatarWrapper: {
     alignItems: "center",
-    height: height * 0.3,
-    padding: 5
-  },
-  avatar: {
-    marginBottom: height * 0.03
-  },
-  avatarSelect: {
-    height: height * 1.97
+    height: height * 0.3
   },
   inputs: {
-    height: height * 0.4
+    paddingTop: height * 0.05,
+    height: height * 0.3,
+    justifyContent: "space-between"
+  },
+  errorMessageWrapper: {
+    height: height * 0.05,
+    justifyContent: "space-around",
+    alignItems: "center"
   },
   actions: {
     height: height * 0.3,
-    justifyContent: "center"
+    justifyContent: "space-around"
+  },
+  errorMessage: {
+    color: COLOR.main,
+    fontSize: 10
+  },
+  avatar: {
+    marginBottom: height * 0.03
   }
 });

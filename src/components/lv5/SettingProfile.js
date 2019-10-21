@@ -14,7 +14,7 @@ export default class extends React.Component {
     profile: { ...UserDetail.properties },
     avatarSource: "",
     loading: false,
-    errorMessage: { name: "" }
+    errorMessage: { name: "", age: "", gender: "" }
   };
 
   componentDidMount() {
@@ -23,12 +23,7 @@ export default class extends React.Component {
     this.setState({ profile: { ...profile, ...user } });
   }
 
-  onChangeText = (target, text) => {
-    const { profile } = this.state;
-    this.setState({ profile: { ...profile, [target]: text } });
-  };
-
-  onSelectPicker = (target, value) => {
+  onChange = target => value => {
     const { profile } = this.state;
     this.setState({ profile: { ...profile, [target]: value } });
   };
@@ -85,8 +80,35 @@ export default class extends React.Component {
     const { userId } = this.props;
     const { profile } = this.state;
 
-    if (!profile.name) {
-      this.setState({ errorMessage: { name: "表示名を入力して下さい" } });
+    this.setState({ errorMessage: { name: "", gender: "", age: "" } });
+
+    !profile.name &&
+      this.setState({
+        errorMessage: {
+          ...this.state.errorMessage,
+          name: "表示名を入力して下さい"
+        }
+      });
+
+    profile.gender === "0" &&
+      this.setState({
+        errorMessage: {
+          ...this.state.errorMessage,
+          gender: "性別を選択して下さい"
+        }
+      });
+
+    profile.age === "0" &&
+      this.setState({
+        errorMessage: {
+          ...this.state.errorMessage,
+          age: "年齢を選択して下さい"
+        }
+      });
+
+    if (
+      Object.values(this.state.errorMessage).some(message => message !== "")
+    ) {
       return false;
     }
 
@@ -106,8 +128,7 @@ export default class extends React.Component {
     return (
       <SettingProfile
         {...this.state}
-        onChangeText={this.onChangeText}
-        onSelectPicker={this.onSelectPicker}
+        onChange={this.onChange}
         selectAvatar={this.selectAvatar}
         onUpdate={this.onUpdate}
         onSignOut={this.onSignOut}
