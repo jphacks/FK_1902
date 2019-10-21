@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-native";
 import { Actions } from "react-native-router-flux";
 import ImagePicker from "react-native-image-picker";
 
@@ -29,10 +30,11 @@ export default class extends React.Component {
   };
 
   onSignOut = () => {
-    auth
-      .signOut()
-      .then(() => Actions.register())
-      .catch(e => console.error(e.message));
+    auth.signOut();
+  };
+
+  onDeleteAccount = () => {
+    auth.delete();
   };
 
   selectAvatar = () => {
@@ -132,6 +134,7 @@ export default class extends React.Component {
         selectAvatar={this.selectAvatar}
         onUpdate={this.onUpdate}
         onSignOut={this.onSignOut}
+        onDeleteAccount={this.onDeleteAccount}
         isUserCreate={isUserCreate}
       />
     );

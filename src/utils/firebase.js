@@ -1,21 +1,31 @@
 import firebase from "react-native-firebase";
 import { GoogleSignin } from "react-native-google-signin";
+import { Alert } from "react-native";
+import { Actions } from "react-native-router-flux";
+
+import errorAlert from "app/src/utils/errorAlert";
 
 export default firebase;
 
 export const db = firebase.firestore();
 
 export const auth = {
-  phoneNumber: async phoneNumber => {
-    const confirmationResult = await firebase
-      .auth()
-      .signInWithPhoneNumber(phoneNumber)
-      .catch(e => console.error(e.message));
-    return confirmationResult;
-  },
-  signOut: async () => {
-    const req = await firebase.auth().signOut();
-    return req;
+  signOut: () => {
+    Alert.alert("", "ログアウトしますか？", [
+      {
+        text: "いいえ"
+      },
+      {
+        text: "はい",
+        onPress: () => {
+          firebase
+            .auth()
+            .signOut()
+            .catch(() => errorAlert());
+          Actions.register();
+        }
+      }
+    ]);
   },
   currentUserId: () => {
     const currentUser = firebase.auth().currentUser;
@@ -27,7 +37,6 @@ export const auth = {
   },
   siginInWithGoogle: async () => {
     await GoogleSignin.configure({
-      scopes: ["https://www.googleapis.com/auth/drive.readonly"],
       webClientId: ""
     });
     const { accessToken, idToken } = await GoogleSignin.signIn();
@@ -36,6 +45,36 @@ export const auth = {
       accessToken
     );
     await firebase.auth().signInWithCredential(credential);
+  },
+  delete: () => {
+    Alert.alert("", "アカウントを削除しますか？", [
+      {
+        text: "いいえ"
+      },
+      {
+        text: "はい",
+        onPress: () => {
+          Alert.alert(
+            "",
+            `アカウントを削除すると二度と復旧できません。
+よろしいでしょうか？`,
+            [
+              {
+                text: "いいえ"
+              },
+              {
+                text: "はい",
+                onPress: () => {
+                  const currentUser = firebase.auth().currentUser;
+                  currentUser.delete().catch(() => errorAlert());
+                  Actions.register();
+                }
+              }
+            ]
+          );
+        }
+      }
+    ]);
   }
 };
 

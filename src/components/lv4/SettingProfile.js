@@ -19,6 +19,7 @@ export default props => {
     selectAvatar,
     onUpdate,
     onSignOut,
+    onDeleteAccount,
     loading,
     isUserCreate,
     errorMessage
@@ -73,11 +74,11 @@ export default props => {
         </View>
         <View style={styles.actions}>
           <Button
-            title={isUserCreate ? "プロフィール設定" : "設定して戻る"}
+            title={isUserCreate ? "kamatteをはじめる" : "戻る"}
             onPress={onUpdate}
             bgColor={COLOR.main}
           />
-          {isUserCreate && (
+          {!isUserCreate && (
             <>
               <Button
                 title="ログアウト"
@@ -86,7 +87,7 @@ export default props => {
               />
               <Button
                 title="アカウント削除"
-                onPress={onSignOut}
+                onPress={onDeleteAccount}
                 bgColor={COLOR.black}
               />
             </>

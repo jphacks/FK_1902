@@ -1,5 +1,6 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
+import { Alert } from "react-native";
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 import Chatroom from "app/src/models/chatroom";
@@ -63,14 +64,25 @@ export default class extends React.Component {
     const { chatroom } = this.state;
 
     if (isHost) {
-      this.chatroom.delete(chatroomId);
+      Alert.alert("", "ルームを削除します。よろしいですか？", [
+        { text: "いいえ" },
+        { text: "はい", onPress: () => leave() }
+      ]);
     } else {
-      this.chatroom.updateGuest(chatroomId, chatroom);
-      this.notification(false);
+      leave();
     }
-    this.unsubscribeChatroom();
-    this.unsubscribeMessage();
-    Actions.chatroomIndex();
+
+    const leave = () => {
+      if (isHost) {
+        this.chatroom.delete(chatroomId);
+      } else {
+        this.chatroom.updateGuest(chatroomId, chatroom);
+        this.notification(false);
+      }
+      this.unsubscribeChatroom();
+      this.unsubscribeMessage();
+      Actions.chatroomIndex();
+    };
   };
 
   renderBubble = props => {
