@@ -15,7 +15,7 @@ export default ({ size, style, source }) => {
 
   return (
     <TouchableOpacity activeOpacity={1} style={style}>
-      <Image style={styles.image} source={source} />
+      <Image style={styles.image} source={{ uri: source }} />
     </TouchableOpacity>
   );
 };
