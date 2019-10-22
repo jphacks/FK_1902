@@ -39,17 +39,18 @@ export default class extends React.Component {
     return (
       <>
         <LoadingOverlay loading={loading} />
-        <View style={{ alignItems: "center" }}>
-          <Logo />
-          <Text
-            style={{
-              color: COLOR.black,
-              marginBottom: 40
-            }}>
-            愚痴や悩みを誰かに話してみましょう♪
-          </Text>
+        <View style={{ flex: 1 }}>
+          <View style={{ alignItems: "center", marginTop: 200 }}>
+            <Logo />
+            <Text
+              style={{
+                color: COLOR.black
+              }}>
+              愚痴や悩みを誰かに話してみましょう♪
+            </Text>
+          </View>
           <GoogleSigninButton
-            style={{ width: 192, height: 48 }}
+            style={{ width: 220, height: 60, alignSelf: "center" }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
             onPress={this.onLoginOrRegister}
