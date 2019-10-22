@@ -12,7 +12,12 @@ export default props => {
   const tags = Object.keys(TAG);
 
   return (
-    <Modal isVisible={isVisible} style={styles.bottomModal}>
+    <Modal
+      isVisible={isVisible}
+      style={styles.bottomModal}
+      onSwipeComplete={toggleModal}
+      swipeDirection="down"
+      onBackButtonPress={toggleModal}>
       <View style={styles.modalContent}>
         <TagSelectButton
           {...props}
