@@ -39,9 +39,9 @@ export default class extends React.Component {
   };
 
   onDeleteTag = value => {
-    const { filterTags } = this.state;
+    let { filterTags } = this.state;
 
-    filterTags.pop(value);
+    filterTags = filterTags.filter(tag => tag !== value);
     this.setState({ filterTags });
   };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert } from "react-native";
+import { Alert, BackHandler } from "react-native";
 import { Actions } from "react-native-router-flux";
 import ImagePicker from "react-native-image-picker";
 
@@ -20,6 +20,10 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
+    this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      this.onUpdate();
+      return true;
+    });
     const { user } = this.props;
     const { profile } = this.state;
     this.setState({ profile: { ...profile, ...user } });
@@ -139,6 +143,8 @@ export default class extends React.Component {
       })
       .catch(() => errorAlert());
     this.setState({ loading: false });
+
+    this.backHandler.remove();
   };
 
   render() {

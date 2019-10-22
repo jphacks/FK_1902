@@ -50,9 +50,9 @@ export default class extends React.Component {
 
   onDeleteTag = value => {
     const { chatroom } = this.state;
-    const { tags } = chatroom;
+    let { tags } = chatroom;
 
-    tags.pop(value);
+    tags = tags.filter(tag => tag !== value);
     this.setState({ chatroom: { ...chatroom, tags } });
   };
 
