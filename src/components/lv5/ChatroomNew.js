@@ -1,4 +1,5 @@
 import React from "react";
+import { BackHandler } from "react-native";
 import { Actions } from "react-native-router-flux";
 
 import Chatroom from "app/src/models/chatroom";
@@ -13,6 +14,16 @@ export default class extends React.Component {
     isVisibleTagModal: false,
     loading: false
   };
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      return true;
+    });
+  }
+
+  componentWillUnMount() {
+    this.backHandler.remove();
+  }
 
   onCreateChatroom = async () => {
     const { chatroom } = this.state;
